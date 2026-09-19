@@ -1,0 +1,25 @@
+{
+  "expo": {
+    "name": "Pokedex Wireframe",
+    "slug": "pokedex-wireframe",
+    "version": "1.0.0",
+    "platforms": [
+      "android",
+      "ios"
+    ],
+    "orientation": "portrait",
+    "userInterfaceStyle": "light",
+    "android": {
+      "package": "com.example.pokedexwireframe"
+    },
+    "ios": {
+      "bundleIdentifier": "com.example.pokedexwireframe"
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "plugins": [
+      "expo-font"
+    ]
+  }
+}
