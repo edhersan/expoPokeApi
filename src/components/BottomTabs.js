@@ -11,7 +11,7 @@ export default function BottomTabs({ activeTab, onChangeTab }) {
         onPress={() => onChangeTab('pokedex')}
         style={[styles.tab, activeTab === 'pokedex' && styles.activeTab]}
       >
-        <Ionicons name="grid-outline" size={17} color="#111111" />
+        <Ionicons name="grid-outline" size={17} color="#275972" />
         <Text style={styles.tabText}>POKÉDEX</Text>
       </Pressable>
       <Pressable
@@ -20,7 +20,7 @@ export default function BottomTabs({ activeTab, onChangeTab }) {
         onPress={() => onChangeTab('favorites')}
         style={[styles.tab, activeTab === 'favorites' && styles.activeTab]}
       >
-        <Ionicons name="heart-outline" size={17} color="#111111" />
+        <Ionicons name="heart-outline" size={17} color="#275972" />
         <Text style={styles.tabText}>FAVORITOS</Text>
       </Pressable>
     </View>
@@ -29,7 +29,7 @@ export default function BottomTabs({ activeTab, onChangeTab }) {
 
 const styles = StyleSheet.create({
   bottomBar: { flexDirection: 'row', gap: 10, paddingBottom: 12, paddingTop: 12 },
-  tab: { alignItems: 'center', borderColor: '#111111', borderRadius: 13, borderWidth: 2, flex: 1, flexDirection: 'row', gap: 8, justifyContent: 'center', minHeight: 49 },
-  activeTab: { backgroundColor: '#f4c84b' },
-  tabText: { color: '#111111', fontSize: 11, fontWeight: '900', letterSpacing: 1 },
+  tab: { alignItems: 'center', backgroundColor: 'rgba(255, 255, 255, 0.42)', borderColor: 'rgba(255, 255, 255, 0.9)', borderRadius: 13, borderWidth: 1.5, flex: 1, flexDirection: 'row', gap: 8, justifyContent: 'center', minHeight: 49 },
+  activeTab: { backgroundColor: 'rgba(255, 255, 255, 0.78)', borderColor: '#ffffff' },
+  tabText: { color: '#275972', fontSize: 11, fontWeight: '900', letterSpacing: 1 },
 });

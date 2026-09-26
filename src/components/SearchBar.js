@@ -6,7 +6,7 @@ export default function SearchBar({ onChangeQuery, onSearch, query }) {
   return (
     <View style={styles.searchRow}>
       <View style={styles.inputWrap}>
-        <Ionicons name="search-outline" size={19} color="#111111" />
+        <Ionicons name="search-outline" size={19} color="#275972" />
         <TextInput
           accessibilityLabel="Buscar Pokémon por nombre o ID"
           autoCapitalize="none"
@@ -14,7 +14,7 @@ export default function SearchBar({ onChangeQuery, onSearch, query }) {
           onChangeText={onChangeQuery}
           onSubmitEditing={onSearch}
           placeholder="Nombre o ID..."
-          placeholderTextColor="#77736a"
+          placeholderTextColor="#6b8999"
           returnKeyType="search"
           style={styles.input}
           value={query}
@@ -26,7 +26,7 @@ export default function SearchBar({ onChangeQuery, onSearch, query }) {
         onPress={onSearch}
         style={({ pressed }) => [styles.searchButton, pressed && styles.pressed]}
       >
-        <Ionicons name="arrow-forward" size={22} color="#f5f1e8" />
+        <Ionicons name="arrow-forward" size={22} color="#ffffff" />
       </Pressable>
     </View>
   );
@@ -37,8 +37,8 @@ const styles = StyleSheet.create({
   searchRow: { flexDirection: 'row', gap: 10, marginBottom: 16 },
   inputWrap: {
     alignItems: 'center',
-    backgroundColor: '#fffdf8',
-    borderColor: '#111111',
+    backgroundColor: 'rgba(255, 255, 255, 0.58)',
+    borderColor: 'rgba(255, 255, 255, 0.92)',
     borderRadius: 12,
     borderWidth: 2,
     flex: 1,
@@ -47,13 +47,16 @@ const styles = StyleSheet.create({
     height: 52,
     paddingHorizontal: 14,
   },
-  input: { color: '#111111', flex: 1, fontSize: 16, fontWeight: '600', height: '100%' },
+  input: { color: '#123247', flex: 1, fontSize: 16, fontWeight: '600', height: '100%' },
   searchButton: {
     alignItems: 'center',
-    backgroundColor: '#111111',
+    backgroundColor: '#276782',
     borderRadius: 12,
     height: 52,
     justifyContent: 'center',
+    shadowColor: '#1d5068',
+    shadowOpacity: 0.28,
+    shadowRadius: 7,
     width: 55,
   },
   pressed: { opacity: 0.7 },

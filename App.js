@@ -6,7 +6,7 @@ export default function App() {
   return (
     <SafeAreaProvider>
       <SafeAreaView edges={['top']} style={styles.safeArea}>
-        <StatusBar barStyle="dark-content" backgroundColor="#f5f1e8" />
+        <StatusBar barStyle="dark-content" backgroundColor="#d9edf8" />
         <PokedexScreen />
       </SafeAreaView>
     </SafeAreaProvider>
@@ -14,5 +14,5 @@ export default function App() {
 }
 
 const styles = StyleSheet.create({
-  safeArea: { flex: 1, backgroundColor: '#f5f1e8' },
+  safeArea: { flex: 1, backgroundColor: '#d9edf8' },
 });

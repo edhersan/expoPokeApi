@@ -10,7 +10,7 @@ function StatBlock({ label, value, icon }) {
   return (
     <View style={styles.statBlock}>
       <View style={styles.statHeading}>
-        <Ionicons name={icon} size={15} color="#111111" />
+        <Ionicons name={icon} size={15} color="#275972" />
         <Text style={styles.statLabel}>{label}</Text>
       </View>
       <Text style={styles.statValue}>{value}</Text>
@@ -85,21 +85,21 @@ export default function PokemonCard({ favorite, loading, onToggleFavorite, pokem
 
 const styles = StyleSheet.create({
   cardHeader: { flexDirection: 'row', justifyContent: 'space-between', marginBottom: 8 },
-  cardKicker: { color: '#6a665d', fontSize: 11, fontWeight: '900', letterSpacing: 1.7 },
-  cardId: { color: '#6a665d', fontSize: 12, fontWeight: '800' },
-  imageFrame: { alignItems: 'center', backgroundColor: '#e8e1d2', borderColor: '#111111', borderRadius: 18, borderWidth: 3, height: 285, justifyContent: 'center', overflow: 'hidden', position: 'relative' },
+  cardKicker: { color: '#35627a', fontSize: 11, fontWeight: '900', letterSpacing: 1.7 },
+  cardId: { color: '#4e7184', fontSize: 12, fontWeight: '800' },
+  imageFrame: { alignItems: 'center', backgroundColor: 'rgba(235, 248, 255, 0.56)', borderColor: 'rgba(255, 255, 255, 0.95)', borderRadius: 18, borderWidth: 1.5, height: 285, justifyContent: 'center', overflow: 'hidden', position: 'relative', shadowColor: '#3b7892', shadowOpacity: 0.2, shadowRadius: 12 },
   pokemonImage: { height: '88%', resizeMode: 'contain', width: '88%' },
-  favoriteButton: { alignItems: 'center', backgroundColor: '#fffdf8', borderColor: '#111111', borderRadius: 20, borderWidth: 2, height: 40, justifyContent: 'center', position: 'absolute', right: 12, top: 12, width: 40 },
+  favoriteButton: { alignItems: 'center', backgroundColor: 'rgba(255, 255, 255, 0.72)', borderColor: 'rgba(255, 255, 255, 0.95)', borderRadius: 20, borderWidth: 1.5, height: 40, justifyContent: 'center', position: 'absolute', right: 12, shadowColor: '#3b7892', shadowOpacity: 0.2, shadowRadius: 6, top: 12, width: 40 },
   nameRow: { alignItems: 'baseline', flexDirection: 'row', gap: 10, paddingVertical: 14 },
-  pokemonName: { color: '#111111', fontSize: 25, fontWeight: '900', textTransform: 'capitalize' },
-  pokemonType: { color: '#77736a', fontSize: 10, fontWeight: '900', letterSpacing: 1 },
-  detailsGrid: { borderColor: '#111111', borderRadius: 14, borderWidth: 2, flexDirection: 'row', overflow: 'hidden' },
+  pokemonName: { color: '#123247', fontSize: 25, fontWeight: '900', textTransform: 'capitalize' },
+  pokemonType: { color: '#4e7184', fontSize: 10, fontWeight: '900', letterSpacing: 1 },
+  detailsGrid: { backgroundColor: 'rgba(255, 255, 255, 0.42)', borderColor: 'rgba(255, 255, 255, 0.9)', borderRadius: 14, borderWidth: 1.5, flexDirection: 'row', overflow: 'hidden' },
   detailsColumn: { flex: 1 },
-  statBlock: { borderBottomColor: '#111111', borderBottomWidth: 1, minHeight: 83, padding: 13 },
+  statBlock: { borderBottomColor: 'rgba(39, 103, 130, 0.24)', borderBottomWidth: 1, minHeight: 83, padding: 13 },
   statHeading: { alignItems: 'center', flexDirection: 'row', gap: 6 },
-  statLabel: { color: '#6a665d', fontSize: 10, fontWeight: '900', letterSpacing: 1.2 },
-  statValue: { color: '#111111', fontSize: 20, fontWeight: '900', marginTop: 8 },
-  moveBlock: { borderBottomColor: '#111111', borderBottomWidth: 1, minHeight: 83, padding: 13 },
-  moveNumber: { color: '#6a665d', fontSize: 10, fontWeight: '900', letterSpacing: 1.2 },
-  moveName: { color: '#111111', fontSize: 16, fontWeight: '800', marginTop: 10, textTransform: 'capitalize' },
+  statLabel: { color: '#4e7184', fontSize: 10, fontWeight: '900', letterSpacing: 1.2 },
+  statValue: { color: '#123247', fontSize: 20, fontWeight: '900', marginTop: 8 },
+  moveBlock: { borderBottomColor: 'rgba(39, 103, 130, 0.24)', borderBottomWidth: 1, minHeight: 83, padding: 13 },
+  moveNumber: { color: '#4e7184', fontSize: 10, fontWeight: '900', letterSpacing: 1.2 },
+  moveName: { color: '#123247', fontSize: 16, fontWeight: '800', marginTop: 10, textTransform: 'capitalize' },
 });

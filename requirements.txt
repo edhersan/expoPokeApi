@@ -1,0 +1,25 @@
+# Requisitos del proyecto Expo Poke API
+#
+# Este proyecto usa npm, no pip. Las versiones instalables se mantienen en
+# package.json y package-lock.json.
+
+Runtime:
+- Node.js >= 20.19.4
+- npm (incluido con Node.js)
+
+Dependencies:
+- @expo/vector-icons ^15.0.2
+- expo ~57.0.24
+- expo-font ~57.0.4
+- react 19.2.3
+- react-native 0.86.3
+- react-native-safe-area-context ~5.7.0
+
+External services:
+- PokeAPI: https://pokeapi.co/api/v2/pokemon/
+
+Installation:
+- npm install
+
+Run:
+- npx expo start
