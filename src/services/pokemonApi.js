@@ -14,5 +14,20 @@ export async function fetchPokemonByQuery(query) {
     throw new Error('POKEMON_NOT_FOUND');
   }
 
-  return response.json();
+  const pokemon = await response.json();
+  const speciesResponse = await fetch(pokemon.species.url);
+
+  if (!speciesResponse.ok) {
+    throw new Error('POKEMON_NOT_FOUND');
+  }
+
+  const species = await speciesResponse.json();
+  const descriptionEntry = species.flavor_text_entries.find(
+    (entry) => entry.language.name === 'en',
+  );
+
+  return {
+    ...pokemon,
+    description: descriptionEntry?.flavor_text.replace(/[\n\f]/g, ' ') || 'No hay descripción disponible.',
+  };
 }

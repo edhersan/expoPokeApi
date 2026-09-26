@@ -11,6 +11,7 @@ Este proyecto corresponde a la **nota de la sexta sesión de Aplicaciones Móvil
 - React 19.2.3
 - Expo Vector Icons
 - PokéAPI
+- FreeToGame Video Games Database API
 
 ## Instalación
 
@@ -19,6 +20,8 @@ Requiere Node.js 20.19.4 o superior.
 ```powershell
 npm.cmd install
 ```
+
+La sección de videojuegos consulta el catálogo público de FreeToGame y no requiere API key.
 
 ## Ejecución
 
@@ -36,4 +39,6 @@ Después, escanea el código QR con Expo Go o utiliza las opciones disponibles e
 - `src/screens/PokedexScreen.js`: pantalla principal y estado de la aplicación.
 - `src/components/`: componentes reutilizables de la interfaz.
 - `src/services/pokemonApi.js`: comunicación con PokéAPI.
+- `src/services/juegosApi.js`: microservicio para búsqueda, detalles e imágenes de FreeToGame.
 - `src/constants/pokemon.js`: constantes de la aplicación.
+- `src/constants/freetogame.js`: URL y juego inicial de FreeToGame.
