@@ -1,0 +1,28 @@
+{
+  "compilerOptions": {
+    "target": "ES2021",
+    "lib": ["ES2021"],
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "jsx": "react-jsx",
+    "strict": true,
+    "skipLibCheck": true,
+    "noEmit": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "paths": {
+      "@/*": ["./*"],
+      "@/components/*": ["./app/components/*"],
+      "@/services/*": ["./services/*"],
+      "@/constants/*": ["./constants/*"],
+      "@/types": ["./types/index.ts"],
+      "@/types/*": ["./types/*"]
+    }
+  },
+  "include": ["app/**/*", "constants/**/*", "services/**/*", "types/**/*", "*.config.*"],
+  "exclude": ["node_modules"],
+  "extends": "expo/tsconfig.base"
+}

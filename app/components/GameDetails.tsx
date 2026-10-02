@@ -1,7 +1,14 @@
 import { Ionicons } from '@expo/vector-icons';
 import { ScrollView, StyleSheet, Text, View } from 'react-native';
+import React from 'react';
+import { Game } from '../types';
 
-export default function GameDetails({ game, loading }) {
+interface GameDetailsProps {
+  game: Game | null;
+  loading: boolean;
+}
+
+export default function GameDetails({ game, loading }: GameDetailsProps) {
   if (loading || !game) {
     return <View style={styles.empty}><Text style={styles.emptyText}>Cargando ficha del juego...</Text></View>;
   }

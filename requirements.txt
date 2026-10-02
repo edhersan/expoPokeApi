@@ -1,25 +1,52 @@
 # Requisitos del proyecto Expo Poke API
 #
-# Este proyecto usa npm, no pip. Las versiones instalables se mantienen en
-# package.json y package-lock.json.
+# Este proyecto usa npm, no pip. Las dependencias instalables se mantienen en
+# package.json y package-lock.json; este archivo sirve como referencia rápida.
 
 Runtime:
 - Node.js >= 20.19.4
 - npm (incluido con Node.js)
 
-Dependencies:
+Production dependencies:
+- @expo/metro-config ^57.0.12
 - @expo/vector-icons ^15.0.2
+- @react-navigation/bottom-tabs ^7.20.0
+- @react-navigation/native ^7.5.0
 - expo ~57.0.24
+- expo-constants ^57.0.20
 - expo-font ~57.0.4
-- react 19.2.3
+- expo-linking ^57.0.11
+- expo-router ^57.0.24
+- expo-web-browser ^57.0.3
+- react ^19.3.0
+- react-dom ^19.3.0
 - react-native 0.86.3
+- react-native-gesture-handler ^3.3.0
+- react-native-reanimated ^4.7.0
 - react-native-safe-area-context ~5.7.0
+- react-native-screens ^4.28.0
+- react-native-web ^0.21.3
+
+Development dependencies:
+- @types/react ^19.3.0
+- @types/react-dom ^19.3.0
+- @types/react-native ^0.72.8
+- @types/react-native-web ^0.19.3
+- typescript ^7.0.2
 
 External services:
-- PokeAPI: https://pokeapi.co/api/v2/pokemon/
+- PokéAPI: https://pokeapi.co/api/v2/pokemon/
+- FreeToGame: https://www.freetogame.com/api/
 
 Installation:
 - npm install
 
 Run:
-- npx expo start
+- npm start
+- npm run android
+- npm run ios
+- npm run web
+
+Validation:
+- npx expo export --platform android
+- npx tsc --noEmit

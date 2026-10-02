@@ -1,16 +1,24 @@
 import { Ionicons } from '@expo/vector-icons';
-import { ActivityIndicator, Image, Pressable, StyleSheet, Text, View } from 'react-native';
+import { Platform, ActivityIndicator, Image, Pressable, StyleSheet, Text, View } from 'react-native';
+import React from 'react';
+import { Pokemon } from '../types';
 
-// Los IDs de PokéAPI se muestran siempre con tres dígitos en la tarjeta.
-function formatLabel(value) {
+interface PokemonCardProps {
+  pokemon: Pokemon | null;
+  loading: boolean;
+  favorite: boolean;
+  onToggleFavorite: () => void;
+}
+
+function formatLabel(value: number): string {
   return String(value).padStart(3, '0');
 }
 
-function StatBlock({ label, value, icon }) {
+function StatBlock({ label, value, icon }: { label: string; value: string; icon: string }) {
   return (
     <View style={styles.statBlock}>
       <View style={styles.statHeading}>
-        <Ionicons name={icon} size={15} color="#275972" />
+        <Ionicons name={icon as any} size={15} color="#275972" />
         <Text style={styles.statLabel}>{label}</Text>
       </View>
       <Text style={styles.statValue}>{value}</Text>
@@ -18,24 +26,49 @@ function StatBlock({ label, value, icon }) {
   );
 }
 
-function MoveBlock({ number, name }) {
+function MoveBlock({ number, name }: { number: number; name: string }) {
   return (
     <View style={styles.moveBlock}>
       <Text style={styles.moveNumber}>MOVE {number}</Text>
       <Text numberOfLines={1} style={styles.moveName}>
-        {name.replaceAll('-', ' ')}
+        {name.replace(/-/g, ' ')}
       </Text>
     </View>
   );
 }
 
-export default function PokemonCard({ favorite, loading, onToggleFavorite, pokemon }) {
-  // PokéAPI ofrece dos fuentes: preferimos el artwork oficial y usamos el sprite como respaldo.
+function getShadows(): Record<string, any> {
+  if (typeof Platform === 'undefined' || !Platform.select) {
+    return {};
+  }
+  return Platform.select({
+    ios: { shadowColor: '#3b7892', shadowOpacity: 0.2, shadowRadius: 12, shadowOffset: { width: 0, height: 4 } },
+    android: { elevation: 6 },
+    web: { boxShadow: '0 4px 12px rgba(59, 120, 146, 0.2)' },
+    default: {},
+  }) || {};
+}
+
+function getFavoriteButtonShadows(): Record<string, any> {
+  if (typeof Platform === 'undefined' || !Platform.select) {
+    return {};
+  }
+  return Platform.select({
+    ios: { shadowColor: '#3b7892', shadowOpacity: 0.2, shadowRadius: 6, shadowOffset: { width: 0, height: 2 } },
+    android: { elevation: 3 },
+    web: { boxShadow: '0 2px 6px rgba(59, 120, 146, 0.2)' },
+    default: {},
+  }) || {};
+}
+
+export default function PokemonCard({ favorite, loading, onToggleFavorite, pokemon }: PokemonCardProps) {
   const imageUri = pokemon?.sprites?.other?.['official-artwork']?.front_default
     || pokemon?.sprites?.front_default;
 
-  // El requisito de la tarjeta es mostrar exactamente los dos primeros movimientos.
   const moves = pokemon?.moves?.slice(0, 2) || [];
+
+  const imageFrameStyle = { ...styles.imageFrame, ...getShadows() };
+  const favoriteButtonStyle = { ...styles.favoriteButton, ...getFavoriteButtonShadows() };
 
   return (
     <>
@@ -43,18 +76,18 @@ export default function PokemonCard({ favorite, loading, onToggleFavorite, pokem
         <Text style={styles.cardKicker}>SPECIMEN</Text>
         {pokemon && <Text style={styles.cardId}>#{formatLabel(pokemon.id)}</Text>}
       </View>
-      <View style={styles.imageFrame}>
+      <View style={imageFrameStyle}>
         {loading ? (
           <ActivityIndicator color="#111111" size="large" />
         ) : imageUri ? (
-          <Image accessibilityLabel={`Imagen de ${pokemon.name}`} source={{ uri: imageUri }} style={styles.pokemonImage} />
+          <Image accessibilityLabel={`Imagen de ${pokemon?.name}`} resizeMode="contain" source={{ uri: imageUri }} style={styles.pokemonImage} />
         ) : null}
         {!loading && pokemon && (
           <Pressable
             accessibilityLabel={favorite ? 'Quitar de favoritos' : 'Añadir a favoritos'}
             accessibilityRole="button"
             onPress={onToggleFavorite}
-            style={styles.favoriteButton}
+            style={({ pressed }) => [favoriteButtonStyle, pressed && { opacity: 0.7 }]}
           >
             <Ionicons name={favorite ? 'heart' : 'heart-outline'} size={22} color="#111111" />
           </Pressable>
@@ -87,9 +120,9 @@ const styles = StyleSheet.create({
   cardHeader: { flexDirection: 'row', justifyContent: 'space-between', marginBottom: 8 },
   cardKicker: { color: '#35627a', fontSize: 11, fontWeight: '900', letterSpacing: 1.7 },
   cardId: { color: '#4e7184', fontSize: 12, fontWeight: '800' },
-  imageFrame: { alignItems: 'center', backgroundColor: 'rgba(235, 248, 255, 0.56)', borderColor: 'rgba(255, 255, 255, 0.95)', borderRadius: 18, borderWidth: 1.5, height: 285, justifyContent: 'center', overflow: 'hidden', position: 'relative', shadowColor: '#3b7892', shadowOpacity: 0.2, shadowRadius: 12 },
-  pokemonImage: { height: '88%', resizeMode: 'contain', width: '88%' },
-  favoriteButton: { alignItems: 'center', backgroundColor: 'rgba(255, 255, 255, 0.72)', borderColor: 'rgba(255, 255, 255, 0.95)', borderRadius: 20, borderWidth: 1.5, height: 40, justifyContent: 'center', position: 'absolute', right: 12, shadowColor: '#3b7892', shadowOpacity: 0.2, shadowRadius: 6, top: 12, width: 40 },
+  imageFrame: { alignItems: 'center', backgroundColor: 'rgba(235, 248, 255, 0.56)', borderColor: 'rgba(255, 255, 255, 0.95)', borderRadius: 18, borderWidth: 1.5, height: 285, justifyContent: 'center', overflow: 'hidden', position: 'relative' },
+  pokemonImage: { height: '88%', width: '88%' },
+  favoriteButton: { alignItems: 'center', backgroundColor: 'rgba(255, 255, 255, 0.72)', borderColor: 'rgba(255, 255, 255, 0.95)', borderRadius: 20, borderWidth: 1.5, height: 40, justifyContent: 'center', position: 'absolute', right: 12, top: 12, width: 40 },
   nameRow: { alignItems: 'baseline', flexDirection: 'row', gap: 10, paddingVertical: 14 },
   pokemonName: { color: '#123247', fontSize: 25, fontWeight: '900', textTransform: 'capitalize' },
   pokemonType: { color: '#4e7184', fontSize: 10, fontWeight: '900', letterSpacing: 1 },

@@ -1,13 +1,34 @@
-import { ActivityIndicator, Image, StyleSheet, Text, View } from 'react-native';
+import { Platform, ActivityIndicator, Image, StyleSheet, Text, View } from 'react-native';
+import React from 'react';
+import { Pokemon } from '../types';
 
-export default function PokemonGallery({ loading, pokemon }) {
+interface PokemonGalleryProps {
+  pokemon: Pokemon | null;
+  loading: boolean;
+}
+
+function getImageCardShadows(): Record<string, any> {
+  if (typeof Platform === 'undefined' || !Platform.select) {
+    return {};
+  }
+  return Platform.select({
+    ios: { shadowColor: '#3b7892', shadowOpacity: 0.16, shadowRadius: 8, shadowOffset: { width: 0, height: 2 } },
+    android: { elevation: 4 },
+    web: { boxShadow: '0 2px 8px rgba(59, 120, 146, 0.16)' },
+    default: {},
+  }) || {};
+}
+
+export default function PokemonGallery({ loading, pokemon }: PokemonGalleryProps) {
   const images = [
     pokemon?.sprites?.other?.['official-artwork']?.front_default,
     pokemon?.sprites?.front_default,
     pokemon?.sprites?.front_shiny,
     pokemon?.sprites?.back_default,
     pokemon?.sprites?.other?.dream_world?.front_default,
-  ].filter(Boolean).slice(0, 3);
+  ].filter((img): img is string => Boolean(img)).slice(0, 3);
+
+  const imageCardStyle = { ...styles.imageCard, ...getImageCardShadows() };
 
   return (
     <View style={styles.gallery}>
@@ -20,11 +41,12 @@ export default function PokemonGallery({ loading, pokemon }) {
       ) : (
         <View style={styles.imageGrid}>
           {images.map((image, index) => (
-            <View key={image} style={[styles.imageCard, index === 0 && styles.featuredImage]}>
+            <View key={image} style={[imageCardStyle, index === 0 && styles.featuredImage]}>
               <Image
-                accessibilityLabel={`Imagen ${index + 1} de ${pokemon.name}`}
+                accessibilityLabel={`Imagen ${index + 1} de ${pokemon?.name}`}
+                resizeMode="contain"
                 source={{ uri: image }}
-                style={styles.image}
+                style={styles.imageStyle}
               />
               <Text style={styles.imageLabel}>{index === 0 ? 'OFFICIAL ARTWORK' : index === 1 ? 'NORMAL SPRITE' : 'ALTERNATIVE SPRITE'}</Text>
             </View>
@@ -42,8 +64,8 @@ const styles = StyleSheet.create({
   id: { color: '#4e7184', fontSize: 12, fontWeight: '800' },
   loading: { alignItems: 'center', flex: 1, justifyContent: 'center' },
   imageGrid: { gap: 12 },
-  imageCard: { alignItems: 'center', backgroundColor: 'rgba(255, 255, 255, 0.46)', borderColor: 'rgba(255, 255, 255, 0.9)', borderRadius: 16, borderWidth: 1.5, height: 140, justifyContent: 'center', overflow: 'hidden', position: 'relative', shadowColor: '#3b7892', shadowOpacity: 0.16, shadowRadius: 8 },
+  imageCard: { alignItems: 'center', backgroundColor: 'rgba(255, 255, 255, 0.46)', borderColor: 'rgba(255, 255, 255, 0.9)', borderRadius: 16, borderWidth: 1.5, height: 140, justifyContent: 'center', overflow: 'hidden', position: 'relative' },
   featuredImage: { height: 245 },
-  image: { height: '78%', resizeMode: 'contain', width: '78%' },
+  imageStyle: { height: '78%', width: '78%' },
   imageLabel: { bottom: 10, color: '#4e7184', fontSize: 9, fontWeight: '900', letterSpacing: 1.1, position: 'absolute' },
 });

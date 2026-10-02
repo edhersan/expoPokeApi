@@ -3,9 +3,11 @@
     "name": "Pokedex Wireframe",
     "slug": "pokedex-wireframe",
     "version": "1.0.0",
+    "scheme": "pokedex",
     "platforms": [
       "android",
-      "ios"
+      "ios",
+      "web"
     ],
     "orientation": "portrait",
     "userInterfaceStyle": "light",
@@ -15,11 +17,16 @@
     "ios": {
       "bundleIdentifier": "com.example.pokedexwireframe"
     },
+    "web": {
+      "bundler": "metro",
+      "output": "static"
+    },
     "assetBundlePatterns": [
       "**/*"
     ],
     "plugins": [
-      "expo-font"
+      "expo-font",
+      "expo-router"
     ]
   }
 }

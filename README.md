@@ -1,44 +1,97 @@
 # Pokedex Expo
 
-Aplicación móvil desarrollada con React Native y Expo que consulta la [PokéAPI](https://pokeapi.co/). Permite buscar Pokémon por nombre o ID, consultar sus datos principales, ver sus movimientos y marcar favoritos durante la sesión.
+Aplicación multiplataforma desarrollada con React Native, Expo y TypeScript. Permite:
 
-Este proyecto corresponde a la **nota de la sexta sesión de Aplicaciones Móviles**.
+- Buscar Pokémon por nombre o ID.
+- Consultar estadísticas, movimientos, imágenes y descripción.
+- Explorar juegos usando la API pública de FreeToGame.
+- Navegar entre las secciones mediante tabs de Expo Router.
 
 ## Tecnologías
 
 - Expo SDK 57
+- Expo Router 57
 - React Native 0.86.3
-- React 19.2.3
+- React 19.3.0
+- TypeScript 7
+- React Native Web
 - Expo Vector Icons
 - PokéAPI
 - FreeToGame Video Games Database API
 
+## Requisitos
+
+- Node.js `>= 20.19.4`
+- npm, incluido con Node.js
+- Expo Go para probar en un dispositivo físico
+- Android Studio y un emulador Android, si se ejecuta localmente en Android
+- Xcode y un simulador iOS, si se ejecuta localmente en iOS
+
+La aplicación no requiere API keys. Las APIs externas utilizadas son:
+
+- PokéAPI: <https://pokeapi.co/api/v2/pokemon/>
+- FreeToGame: <https://www.freetogame.com/api/>
+
 ## Instalación
 
-Requiere Node.js 20.19.4 o superior.
-
-```powershell
-npm.cmd install
+```bash
+npm install
 ```
-
-La sección de videojuegos consulta el catálogo público de FreeToGame y no requiere API key.
 
 ## Ejecución
 
-En Windows PowerShell, usa `npx.cmd` para iniciar Expo:
+Inicia el servidor de desarrollo:
 
-```powershell
-npx.cmd expo start
+```bash
+npm start
 ```
 
-Después, escanea el código QR con Expo Go o utiliza las opciones disponibles en la terminal para abrir Android o la web.
+Para abrir una plataforma específica:
+
+```bash
+npm run android
+npm run ios
+npm run web
+```
+
+Para usar Expo Go en un dispositivo físico, el equipo y el dispositivo deben estar en la misma red. Si la conexión LAN no funciona, reinicia el servidor con:
+
+```bash
+npx expo start --lan --clear
+```
+
+En Windows PowerShell, usa `npx.cmd` en lugar de `npx` si el sistema lo requiere.
 
 ## Estructura principal
 
-- `App.js`: punto de entrada de la aplicación.
-- `src/screens/PokedexScreen.js`: pantalla principal y estado de la aplicación.
-- `src/components/`: componentes reutilizables de la interfaz.
-- `src/services/pokemonApi.js`: comunicación con PokéAPI.
-- `src/services/juegosApi.js`: microservicio para búsqueda, detalles e imágenes de FreeToGame.
-- `src/constants/pokemon.js`: constantes de la aplicación.
-- `src/constants/freetogame.js`: URL y juego inicial de FreeToGame.
+```text
+app/
+├── _layout.tsx                 # Layout raíz de Expo Router
+├── (tabs)/                     # Pantallas y navegación inferior
+│   ├── _layout.tsx
+│   ├── pokedex.tsx
+│   ├── pokemon-info.tsx
+│   ├── games.tsx
+│   └── game-info.tsx
+└── components/                 # Componentes reutilizables
+constants/                      # URLs y valores iniciales
+services/                       # Clientes de las APIs externas
+types/                          # Tipos TypeScript compartidos
+app.json                        # Configuración de Expo
+metro.config.js                # Configuración de Metro
+tsconfig.json                   # Configuración de TypeScript
+```
+
+## Validación
+
+Genera y valida el bundle Android con:
+
+```bash
+npx expo export --platform android
+```
+
+Comprueba los tipos con:
+
+```bash
+npx tsc --noEmit
+```

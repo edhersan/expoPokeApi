@@ -1,7 +1,14 @@
 import { Ionicons } from '@expo/vector-icons';
 import { StyleSheet, Text, View } from 'react-native';
+import React from 'react';
+import { Pokemon } from '../types';
 
-export default function PokemonDetails({ loading, pokemon }) {
+interface PokemonDetailsProps {
+  pokemon: Pokemon | null;
+  loading: boolean;
+}
+
+export default function PokemonDetails({ loading, pokemon }: PokemonDetailsProps) {
   const moves = pokemon?.moves?.slice(0, 4) || [];
 
   if (loading || !pokemon) {
