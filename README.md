@@ -4,7 +4,7 @@ Aplicación multiplataforma desarrollada con React Native, Expo y TypeScript. Pe
 
 - Buscar Pokémon por nombre o ID.
 - Consultar estadísticas, movimientos, imágenes y descripción.
-- Explorar juegos usando la API pública de FreeToGame.
+- Explorar juegos usando las APIs desplegadas de Pokémon y videojuegos.
 - Navegar entre las secciones mediante tabs de Expo Router.
 
 ## Tecnologías
@@ -16,8 +16,8 @@ Aplicación multiplataforma desarrollada con React Native, Expo y TypeScript. Pe
 - TypeScript 7
 - React Native Web
 - Expo Vector Icons
-- PokéAPI
-- FreeToGame Video Games Database API
+- API de Pokémon desplegada en Vercel
+- API de videojuegos desplegada en Vercel
 
 ## Requisitos
 
@@ -27,10 +27,10 @@ Aplicación multiplataforma desarrollada con React Native, Expo y TypeScript. Pe
 - Android Studio y un emulador Android, si se ejecuta localmente en Android
 - Xcode y un simulador iOS, si se ejecuta localmente en iOS
 
-La aplicación no requiere API keys. Las APIs externas utilizadas son:
+La aplicación no requiere API keys. Las APIs utilizadas son:
 
-- PokéAPI: <https://pokeapi.co/api/v2/pokemon/>
-- FreeToGame: <https://www.freetogame.com/api/>
+- Pokémon: <https://pokemon-api-edhersan.vercel.app/>
+- Videojuegos: <https://games-api-iota.vercel.app/>
 
 ## Instalación
 

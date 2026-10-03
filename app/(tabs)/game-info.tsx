@@ -1,12 +1,9 @@
-import { useEffect, useState } from 'react';
 import { Ionicons } from '@expo/vector-icons';
 import { Platform, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import SearchBar from '@/components/SearchBar';
 import GameDetails from '@/components/GameDetails';
-import { fetchGameByQuery } from '@/services/juegosApi';
-import { INITIAL_GAME } from '@/constants/freetogame';
-import { Game } from '@/types';
+import { useGameSearch } from '@/context/GameSearchContext';
 
 function getHeaderMarkShadows(): Record<string, any> {
   if (typeof Platform === 'undefined' || !Platform.select) {
@@ -22,37 +19,13 @@ function getHeaderMarkShadows(): Record<string, any> {
 
 export default function GameInfoScreen() {
   const insets = useSafeAreaInsets();
-  const [query, setQuery] = useState(INITIAL_GAME);
-  const [game, setGame] = useState<Game | null>(null);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState('');
+  const { query, game, loading, error, setQuery, searchGame } = useGameSearch();
 
   const headerMarkStyle = { ...styles.headerMark, ...getHeaderMarkShadows() };
 
-  async function searchGame(value: string) {
-    setLoading(true);
-    setError('');
-    try {
-      const result = await fetchGameByQuery(value);
-      setGame(result);
-    } catch (searchError) {
-      setGame(null);
-      const err = searchError as Error;
-      setError(err.message === 'EMPTY_QUERY'
-        ? 'Escribe el nombre de un videojuego para buscar.'
-        : 'No encontramos ese videojuego en el catálogo de FreeToGame.');
-    } finally {
-      setLoading(false);
-    }
-  }
-
   function handleSearch() {
-    searchGame(query);
+    void searchGame();
   }
-
-  useEffect(() => {
-    searchGame(INITIAL_GAME);
-  }, []);
 
   return (
     <View style={[styles.screen, { paddingBottom: Math.max(insets.bottom, 12) }]}>

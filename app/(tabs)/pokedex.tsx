@@ -1,12 +1,9 @@
-import { useEffect, useState } from 'react';
 import { Ionicons } from '@expo/vector-icons';
 import { ActivityIndicator, Platform, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import SearchBar from '@/components/SearchBar';
 import PokemonGallery from '@/components/PokemonGallery';
-import { fetchPokemonByQuery } from '@/services/pokemonApi';
-import { INITIAL_POKEMON } from '@/constants/pokemon';
-import { Pokemon } from '@/types';
+import { usePokemonSearch } from '@/context/PokemonSearchContext';
 
 function getHeaderMarkShadows(): Record<string, any> {
   if (typeof Platform === 'undefined' || !Platform.select) {
@@ -22,37 +19,13 @@ function getHeaderMarkShadows(): Record<string, any> {
 
 export default function PokedexScreen() {
   const insets = useSafeAreaInsets();
-  const [query, setQuery] = useState(INITIAL_POKEMON);
-  const [pokemon, setPokemon] = useState<Pokemon | null>(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState('');
+  const { query, pokemon, loading, error, setQuery, searchPokemon } = usePokemonSearch();
 
   const headerMarkStyle = { ...styles.headerMark, ...getHeaderMarkShadows() };
 
-  async function searchPokemon(value: string) {
-    setLoading(true);
-    setError('');
-    try {
-      const result = await fetchPokemonByQuery(value);
-      setPokemon(result);
-    } catch (searchError) {
-      setPokemon(null);
-      const err = searchError as Error;
-      setError(err.message === 'EMPTY_QUERY'
-        ? 'Escribe un nombre o un ID para buscar.'
-        : 'No encontramos ese Pokémon. Revisa el nombre o el ID.');
-    } finally {
-      setLoading(false);
-    }
-  }
-
   function handleSearch() {
-    searchPokemon(query);
+    void searchPokemon();
   }
-
-  useEffect(() => {
-    searchPokemon(INITIAL_POKEMON);
-  }, []);
 
   return (
     <View style={[styles.screen, { paddingBottom: Math.max(insets.bottom, 12) }]}>
