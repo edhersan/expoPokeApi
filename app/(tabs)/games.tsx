@@ -1,3 +1,12 @@
+// ──────────────────────────────────────────────────────────────
+// ARCHIVO:  app/(tabs)/games.tsx
+// FUNCIÓN:  Pantalla "Juegos" → buscador + galería de imágenes del videojuego
+// DEPENDE:  context/GameSearchContext.tsx (estado compartido), SearchBar, GameGallery
+// USADO POR: pestaña 3 de la app (ver app/(tabs)/_layout.tsx)
+// CAMBIOS:  textos del encabezado ("VIDEOJUEGOS / FREETOGAME") → JSX | colores aero → styles |
+//           sombras del círculo del header → getHeaderMarkShadows()
+// ──────────────────────────────────────────────────────────────
+
 import { Ionicons } from '@expo/vector-icons';
 import { Platform, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
@@ -5,6 +14,7 @@ import SearchBar from '@/components/SearchBar';
 import GameGallery from '@/components/GameGallery';
 import { useGameSearch } from '@/context/GameSearchContext';
 
+// Sombras del círculo decorativo del encabezado, por plataforma (iOS/Android/Web)
 function getHeaderMarkShadows(): Record<string, any> {
   if (typeof Platform === 'undefined' || !Platform.select) {
     return {};
@@ -19,21 +29,26 @@ function getHeaderMarkShadows(): Record<string, any> {
 
 export default function GamesScreen() {
   const insets = useSafeAreaInsets();
+  // Estado de búsqueda compartido con "Info Juego" (mismo contexto)
   const { query, game, loading, error, setQuery, searchGame } = useGameSearch();
 
   const headerMarkStyle = { ...styles.headerMark, ...getHeaderMarkShadows() };
 
+  // Dispara la búsqueda con el texto actual del input (sin argumento usa `query`)
   function handleSearch() {
     void searchGame();
   }
 
   return (
     <View style={[styles.screen, { paddingBottom: Math.max(insets.bottom, 12) }]}>
+      {/* Fondo decorativo "aero": brillos circulares + línea de luz superior */}
       <View pointerEvents="none" style={styles.backgroundLayer}>
         <View style={[styles.aeroGlow, styles.glowTop]} />
         <View style={[styles.aeroGlow, styles.glowBottom]} />
         <View style={styles.aeroHighlight} />
       </View>
+
+      {/* ─── [SECCIÓN] Encabezado (etiqueta + título + círculo rojo) ─── */}
       <View style={styles.header}>
         <View>
           <Text style={styles.eyebrow}>VIDEOJUEGOS / FREETOGAME</Text>
@@ -43,12 +58,16 @@ export default function GamesScreen() {
           <View style={styles.headerMarkDot} />
         </View>
       </View>
+
+      {/* Buscador: el texto vive en el contexto, no en esta pantalla */}
       <SearchBar
         onChangeQuery={setQuery}
         onSearch={handleSearch}
         placeholder="Nombre del videojuego..."
         query={query}
       />
+
+      {/* Contenido desplazable: galería de imágenes + mensaje de error si lo hay */}
       <ScrollView contentContainerStyle={styles.content} showsVerticalScrollIndicator={false}>
         <GameGallery game={game} loading={loading} />
         {error && (
@@ -62,6 +81,8 @@ export default function GamesScreen() {
   );
 }
 
+// ─── [SECCIÓN] Estilos ───
+// Paleta aero: fondo #d9edf8 | texto #123247 | acentos #35627a / #275972 | error #d86a5d
 const styles = StyleSheet.create({
   screen: { backgroundColor: '#d9edf8', flex: 1, overflow: 'hidden', paddingHorizontal: 20 },
   backgroundLayer: { ...StyleSheet.absoluteFill, overflow: 'hidden' },

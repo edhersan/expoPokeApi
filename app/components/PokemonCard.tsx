@@ -1,3 +1,11 @@
+// ──────────────────────────────────────────────────────────────
+// ARCHIVO:  app/components/PokemonCard.tsx
+// FUNCIÓN:  Tarjeta de presentación de un Pokémon (imagen, stats y botón de favorito)
+// USADO POR: no está en uso actualmente (componente reservado; la Pokédex usa PokemonGallery)
+// CAMBIOS:  nº de movimientos → .slice(0, 2) | botón de favorito → onToggleFavorite (prop) |
+//           textos "SPECIMEN"/"NORMAL DATA" → JSX del return
+// ──────────────────────────────────────────────────────────────
+
 import { Ionicons } from '@expo/vector-icons';
 import { Platform, ActivityIndicator, Image, Pressable, StyleSheet, Text, View } from 'react-native';
 import React from 'react';
@@ -10,10 +18,12 @@ interface PokemonCardProps {
   onToggleFavorite: () => void;
 }
 
+// Formatea el número de Pokédex con 3 dígitos (1 → "001")
 function formatLabel(value: number): string {
   return String(value).padStart(3, '0');
 }
 
+// Bloque de estadística individual (altura / peso) con icono, etiqueta y valor
 function StatBlock({ label, value, icon }: { label: string; value: string; icon: string }) {
   return (
     <View style={styles.statBlock}>
@@ -26,6 +36,7 @@ function StatBlock({ label, value, icon }: { label: string; value: string; icon:
   );
 }
 
+// Bloque de movimiento (ej. "MOVE 1 / tackle"), reemplazando guiones por espacios
 function MoveBlock({ number, name }: { number: number; name: string }) {
   return (
     <View style={styles.moveBlock}>
@@ -37,6 +48,7 @@ function MoveBlock({ number, name }: { number: number; name: string }) {
   );
 }
 
+// Sombras del marco de la imagen, adaptadas por plataforma
 function getShadows(): Record<string, any> {
   if (typeof Platform === 'undefined' || !Platform.select) {
     return {};
@@ -49,6 +61,7 @@ function getShadows(): Record<string, any> {
   }) || {};
 }
 
+// Sombras del botón de favorito (corazón), más sutiles que las del marco
 function getFavoriteButtonShadows(): Record<string, any> {
   if (typeof Platform === 'undefined' || !Platform.select) {
     return {};
@@ -62,9 +75,11 @@ function getFavoriteButtonShadows(): Record<string, any> {
 }
 
 export default function PokemonCard({ favorite, loading, onToggleFavorite, pokemon }: PokemonCardProps) {
+  // Prioridad de imagen: arte oficial → sprite frontal
   const imageUri = pokemon?.sprites?.other?.['official-artwork']?.front_default
     || pokemon?.sprites?.front_default;
 
+  // Máximo 2 movimientos en la tarjeta
   const moves = pokemon?.moves?.slice(0, 2) || [];
 
   const imageFrameStyle = { ...styles.imageFrame, ...getShadows() };
@@ -72,10 +87,13 @@ export default function PokemonCard({ favorite, loading, onToggleFavorite, pokem
 
   return (
     <>
+      {/* Cabecera: etiqueta "SPECIMEN" + número de Pokédex */}
       <View style={styles.cardHeader}>
         <Text style={styles.cardKicker}>SPECIMEN</Text>
         {pokemon && <Text style={styles.cardId}>#{formatLabel(pokemon.id)}</Text>}
       </View>
+
+      {/* Imagen principal con loader y botón de favorito superpuesto */}
       <View style={imageFrameStyle}>
         {loading ? (
           <ActivityIndicator color="#111111" size="large" />
@@ -93,6 +111,8 @@ export default function PokemonCard({ favorite, loading, onToggleFavorite, pokem
           </Pressable>
         )}
       </View>
+
+      {/* Rejilla de datos: columna izquierda (altura/peso) + columna derecha (movimientos) */}
       {pokemon && (
         <>
           <View style={styles.nameRow}>
@@ -116,6 +136,7 @@ export default function PokemonCard({ favorite, loading, onToggleFavorite, pokem
   );
 }
 
+// ─── [SECCIÓN] Estilos ───
 const styles = StyleSheet.create({
   cardHeader: { flexDirection: 'row', justifyContent: 'space-between', marginBottom: 8 },
   cardKicker: { color: '#35627a', fontSize: 11, fontWeight: '900', letterSpacing: 1.7 },

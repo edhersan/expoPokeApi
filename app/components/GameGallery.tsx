@@ -1,3 +1,11 @@
+// ──────────────────────────────────────────────────────────────
+// ARCHIVO:  app/components/GameGallery.tsx
+// FUNCIÓN:  Galería de imágenes del videojuego buscado (portada + capturas)
+// USADO POR: app/(tabs)/games.tsx
+// CAMBIOS:  nº de imágenes → lo controla services/juegosApi.ts (.slice(0, 3)) |
+//           rótulos ("PORTADA", "CAPTURA 0X") → texto del map | alturas → styles
+// ──────────────────────────────────────────────────────────────
+
 import { Platform, ActivityIndicator, Image, StyleSheet, Text, View } from 'react-native';
 import React from 'react';
 import { Game } from '../types';
@@ -7,6 +15,7 @@ interface GameGalleryProps {
   loading: boolean;
 }
 
+// Sombras de las tarjetas de imagen, adaptadas por plataforma
 function getImageCardShadows(): Record<string, any> {
   if (typeof Platform === 'undefined' || !Platform.select) {
     return {};
@@ -23,6 +32,7 @@ export default function GameGallery({ game, loading }: GameGalleryProps) {
   const imageCardStyle = { ...styles.imageCard, ...getImageCardShadows() };
   return (
     <View style={styles.gallery}>
+      {/* Encabezado de la sección: título + ID del juego */}
       <View style={styles.galleryHeader}>
         <Text style={styles.kicker}>ARCHIVO DE JUEGO</Text>
         {game && <Text style={styles.id}>GIANTBOMB / {game.id}</Text>}
@@ -31,6 +41,7 @@ export default function GameGallery({ game, loading }: GameGalleryProps) {
         <View style={styles.loading}><ActivityIndicator color="#275972" size="large" /></View>
       ) : (
         <View style={styles.imageGrid}>
+          {/* game.images viene ya armado en el servicio: [portada, captura 1, captura 2...] */}
           {(game?.images || []).map((image, index) => (
             <View key={image} style={[imageCardStyle, index === 0 && styles.featuredImage]}>
               <Image
@@ -48,6 +59,7 @@ export default function GameGallery({ game, loading }: GameGalleryProps) {
   );
 }
 
+// ─── [SECCIÓN] Estilos ───
 const styles = StyleSheet.create({
   gallery: { flex: 1 },
   galleryHeader: { flexDirection: 'row', justifyContent: 'space-between', marginBottom: 12 },

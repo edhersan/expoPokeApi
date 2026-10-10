@@ -1,7 +1,16 @@
+// ──────────────────────────────────────────────────────────────
+// ARCHIVO:  app/components/SearchBar.tsx
+// FUNCIÓN:  Barra de búsqueda reutilizable (input + botón de lupa/flecha)
+// USADO POR: las 4 pantallas con buscador (pokedex, pokemon-info, games, game-info)
+// CAMBIOS:  placeholder por defecto → se pasa desde cada pantalla (prop `placeholder`) |
+//           colores → styles | sombras → getShadows()
+// ──────────────────────────────────────────────────────────────
+
 import { Ionicons } from '@expo/vector-icons';
 import { Platform, Pressable, StyleSheet, TextInput, View } from 'react-native';
 import React from 'react';
 
+// Props: el padre controla el texto (query) y recibe los eventos de búsqueda
 interface SearchBarProps {
   onChangeQuery: (text: string) => void;
   onSearch: () => void;
@@ -9,6 +18,7 @@ interface SearchBarProps {
   query: string;
 }
 
+// Sombras del botón de búsqueda, adaptadas a cada plataforma (iOS / Android / Web)
 function getShadows(): Record<string, any> {
   if (typeof Platform === 'undefined' || !Platform.select) {
     return {};
@@ -26,6 +36,7 @@ export default function SearchBar({ onChangeQuery, onSearch, placeholder, query 
 
   return (
     <View style={styles.searchRow}>
+      {/* Campo de texto: al enviar con el teclado (returnKeyType="search") dispara onSearch */}
       <View style={styles.inputWrap}>
         <Ionicons name="search-outline" size={19} color="#275972" />
         <TextInput
@@ -41,6 +52,7 @@ export default function SearchBar({ onChangeQuery, onSearch, placeholder, query 
           value={query}
         />
       </View>
+      {/* Botón de buscar: mismo evento que pulsar Return en el teclado */}
       <Pressable
         accessibilityLabel="Buscar"
         accessibilityRole="button"
@@ -53,6 +65,7 @@ export default function SearchBar({ onChangeQuery, onSearch, placeholder, query 
   );
 }
 
+// ─── [SECCIÓN] Estilos ───
 const styles = StyleSheet.create({
   searchRow: { flexDirection: 'row', gap: 10, marginBottom: 16 },
   inputWrap: { alignItems: 'center', backgroundColor: 'rgba(255, 255, 255, 0.64)', borderColor: 'rgba(255, 255, 255, 0.95)', borderRadius: 12, borderWidth: 1.5, flex: 1, flexDirection: 'row', gap: 9, height: 52, paddingHorizontal: 14 },

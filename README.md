@@ -18,6 +18,7 @@ Aplicación multiplataforma desarrollada con React Native, Expo y TypeScript. Pe
 - Expo Vector Icons
 - API de Pokémon desplegada en Vercel
 - API de videojuegos desplegada en Vercel
+- API de profesores desplegada en Vercel
 
 ## Requisitos
 
@@ -31,6 +32,7 @@ La aplicación no requiere API keys. Las APIs utilizadas son:
 
 - Pokémon: <https://pokemon-api-edhersan.vercel.app/>
 - Videojuegos: <https://games-api-iota.vercel.app/>
+- Profesores: <https://docentes-api.vercel.app/>
 
 ## Instalación
 

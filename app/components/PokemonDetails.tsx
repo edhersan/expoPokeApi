@@ -1,3 +1,11 @@
+// ──────────────────────────────────────────────────────────────
+// ARCHIVO:  app/components/PokemonDetails.tsx
+// FUNCIÓN:  Ficha técnica completa del Pokémon (altura, peso, descripción y ataques)
+// USADO POR: app/(tabs)/pokemon-info.tsx
+// CAMBIOS:  nº de ataques mostrados → .slice(0, 4) | campos de la ficha → JSX del return |
+//           textos → strings en mayúsculas ("ALTURA", "ATAQUES", etc.)
+// ──────────────────────────────────────────────────────────────
+
 import { Ionicons } from '@expo/vector-icons';
 import { StyleSheet, Text, View } from 'react-native';
 import React from 'react';
@@ -9,8 +17,10 @@ interface PokemonDetailsProps {
 }
 
 export default function PokemonDetails({ loading, pokemon }: PokemonDetailsProps) {
+  // Máximo 4 ataques en la rejilla de la ficha
   const moves = pokemon?.moves?.slice(0, 4) || [];
 
+  // Estado vacío / cargando: se muestra antes de tener datos
   if (loading || !pokemon) {
     return <View style={styles.empty}><Text style={styles.emptyText}>Cargando ficha...</Text></View>;
   }
@@ -18,7 +28,11 @@ export default function PokemonDetails({ loading, pokemon }: PokemonDetailsProps
   return (
     <View style={styles.details}>
       <Text style={styles.kicker}>PERFIL DEL POKEMON</Text>
+      {/* Nombre en minúsculas; styles lo transforma con textTransform: 'capitalize' */}
       <Text style={styles.name}>{pokemon.name}</Text>
+
+      {/* ─── [SECCIÓN] Tarjetas de estadísticas ─── */}
+      {/* height/weight vienen en cm/g → se dividen entre 10 para mostrar m/kg */}
       <View style={styles.statsRow}>
         <View style={styles.statCard}>
           <Ionicons name="resize-outline" size={18} color="#275972" />
@@ -31,12 +45,17 @@ export default function PokemonDetails({ loading, pokemon }: PokemonDetailsProps
           <Text style={styles.statValue}>{pokemon.weight / 10} kg</Text>
         </View>
       </View>
+
+      {/* Descripción textual (la API no devuelve una, se usa el texto fijo del servicio) */}
       <Text style={styles.description}>{pokemon.description}</Text>
+
+      {/* ─── [SECCIÓN] Rejilla de ataques ─── */}
       <View style={styles.attackHeader}>
         <Text style={styles.sectionTitle}>ATAQUES</Text>
         <Ionicons name="flash-outline" size={18} color="#275972" />
       </View>
       <View style={styles.movesGrid}>
+        {/* Guiones del nombre (ej. "thunder-bolt") → espacios ("thunder bolt") */}
         {moves.map((move, index) => (
           <View key={move.move.name} style={styles.moveCard}>
             <Text style={styles.moveNumber}>0{index + 1}</Text>
@@ -48,6 +67,7 @@ export default function PokemonDetails({ loading, pokemon }: PokemonDetailsProps
   );
 }
 
+// ─── [SECCIÓN] Estilos ───
 const styles = StyleSheet.create({
   details: { flex: 1 },
   empty: { alignItems: 'center', flex: 1, justifyContent: 'center' },

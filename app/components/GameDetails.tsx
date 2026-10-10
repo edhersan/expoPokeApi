@@ -1,3 +1,11 @@
+// ──────────────────────────────────────────────────────────────
+// ARCHIVO:  app/components/GameDetails.tsx
+// FUNCIÓN:  Ficha técnica del videojuego (lanzamiento, desarrollador, descripción)
+// USADO POR: app/(tabs)/game-info.tsx
+// CAMBIOS:  campos de la ficha → JSX del return | textos → strings en mayúsculas |
+//           altura máxima del scroll de descripción → styles.descriptionBox.maxHeight
+// ──────────────────────────────────────────────────────────────
+
 import { Ionicons } from '@expo/vector-icons';
 import { ScrollView, StyleSheet, Text, View } from 'react-native';
 import React from 'react';
@@ -9,6 +17,7 @@ interface GameDetailsProps {
 }
 
 export default function GameDetails({ game, loading }: GameDetailsProps) {
+  // Estado vacío / cargando: se muestra antes de tener datos
   if (loading || !game) {
     return <View style={styles.empty}><Text style={styles.emptyText}>Cargando ficha del juego...</Text></View>;
   }
@@ -17,6 +26,8 @@ export default function GameDetails({ game, loading }: GameDetailsProps) {
     <View style={styles.details}>
       <Text style={styles.kicker}>PERFIL DEL VIDEOJUEGO</Text>
       <Text style={styles.name}>{game.name}</Text>
+
+      {/* ─── [SECCIÓN] Tarjetas de metadatos ─── */}
       <View style={styles.metaRow}>
         <View style={styles.metaCard}>
           <Ionicons name="calendar-outline" size={18} color="#275972" />
@@ -29,6 +40,8 @@ export default function GameDetails({ game, loading }: GameDetailsProps) {
           <Text numberOfLines={2} style={styles.metaValue}>{game.developer}</Text>
         </View>
       </View>
+
+      {/* ─── [SECCIÓN] Descripción (scroll interno, la API devuelve textos largos) ─── */}
       <Text style={styles.sectionTitle}>DESCRIPCION</Text>
       <ScrollView nestedScrollEnabled style={styles.descriptionBox}>
         <Text style={styles.description}>{game.description}</Text>
@@ -37,6 +50,7 @@ export default function GameDetails({ game, loading }: GameDetailsProps) {
   );
 }
 
+// ─── [SECCIÓN] Estilos ───
 const styles = StyleSheet.create({
   details: { flex: 1 },
   empty: { alignItems: 'center', flex: 1, justifyContent: 'center' },

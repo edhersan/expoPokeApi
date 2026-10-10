@@ -1,3 +1,11 @@
+// ──────────────────────────────────────────────────────────────
+// ARCHIVO:  app/components/PokemonGallery.tsx
+// FUNCIÓN:  Galería de imágenes del Pokémon buscado (portada + sprites)
+// USADO POR: app/(tabs)/pokedex.tsx
+// CAMBIOS:  nº de fotos mostradas → .slice(0, 3) | orden de imágenes → array `images` |
+//           altura de las tarjetas → styles.imageCard / styles.featuredImage
+// ──────────────────────────────────────────────────────────────
+
 import { Platform, ActivityIndicator, Image, StyleSheet, Text, View } from 'react-native';
 import React from 'react';
 import { Pokemon } from '../types';
@@ -7,6 +15,7 @@ interface PokemonGalleryProps {
   loading: boolean;
 }
 
+// Sombras de las tarjetas de imagen, adaptadas por plataforma
 function getImageCardShadows(): Record<string, any> {
   if (typeof Platform === 'undefined' || !Platform.select) {
     return {};
@@ -20,6 +29,8 @@ function getImageCardShadows(): Record<string, any> {
 }
 
 export default function PokemonGallery({ loading, pokemon }: PokemonGalleryProps) {
+  // Selección de imágenes por prioridad: arte oficial → frontal → shiny → dorso → dream world
+  // Se descartan las nulas y se muestran máximo 3
   const images = [
     pokemon?.sprites?.other?.['official-artwork']?.front_default,
     pokemon?.sprites?.front_default,
@@ -32,6 +43,7 @@ export default function PokemonGallery({ loading, pokemon }: PokemonGalleryProps
 
   return (
     <View style={styles.gallery}>
+      {/* Encabezado de la sección: título + número de Pokédex */}
       <View style={styles.galleryHeader}>
         <Text style={styles.kicker}>FOTOS DEL POKEMON</Text>
         {pokemon && <Text style={styles.id}>#{String(pokemon.id).padStart(3, '0')}</Text>}
@@ -40,6 +52,7 @@ export default function PokemonGallery({ loading, pokemon }: PokemonGalleryProps
         <View style={styles.loading}><ActivityIndicator color="#275972" size="large" /></View>
       ) : (
         <View style={styles.imageGrid}>
+          {/* La primera imagen es la destacada (más grande); el rótulo depende del índice */}
           {images.map((image, index) => (
             <View key={image} style={[imageCardStyle, index === 0 && styles.featuredImage]}>
               <Image
@@ -57,6 +70,7 @@ export default function PokemonGallery({ loading, pokemon }: PokemonGalleryProps
   );
 }
 
+// ─── [SECCIÓN] Estilos ───
 const styles = StyleSheet.create({
   gallery: { flex: 1 },
   galleryHeader: { flexDirection: 'row', justifyContent: 'space-between', marginBottom: 12 },

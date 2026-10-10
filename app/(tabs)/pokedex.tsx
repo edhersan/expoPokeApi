@@ -1,3 +1,12 @@
+// ──────────────────────────────────────────────────────────────
+// ARCHIVO:  app/(tabs)/pokedex.tsx
+// FUNCIÓN:  Pantalla "Pokédex" → buscador + galería de fotos del Pokémon
+// DEPENDE:  context/PokemonSearchContext.tsx (estado compartido), SearchBar, PokemonGallery
+// USADO POR: pestaña 1 de la app (ver app/(tabs)/_layout.tsx)
+// CAMBIOS:  textos del encabezado ("POKÉDEX / 001") → JSX | colores aero → styles |
+//           sombras del círculo del header → getHeaderMarkShadows()
+// ──────────────────────────────────────────────────────────────
+
 import { Ionicons } from '@expo/vector-icons';
 import { ActivityIndicator, Platform, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
@@ -5,6 +14,7 @@ import SearchBar from '@/components/SearchBar';
 import PokemonGallery from '@/components/PokemonGallery';
 import { usePokemonSearch } from '@/context/PokemonSearchContext';
 
+// Sombras del círculo decorativo del encabezado, por plataforma (iOS/Android/Web)
 function getHeaderMarkShadows(): Record<string, any> {
   if (typeof Platform === 'undefined' || !Platform.select) {
     return {};
@@ -18,22 +28,28 @@ function getHeaderMarkShadows(): Record<string, any> {
 }
 
 export default function PokedexScreen() {
+  // insets.bottom: espacio del home indicator (iPhone) para no tapar contenido
   const insets = useSafeAreaInsets();
+  // Estado de búsqueda compartido con "Info Pokémon" (mismo contexto)
   const { query, pokemon, loading, error, setQuery, searchPokemon } = usePokemonSearch();
 
   const headerMarkStyle = { ...styles.headerMark, ...getHeaderMarkShadows() };
 
+  // Dispara la búsqueda con el texto actual del input (sin argumento usa `query`)
   function handleSearch() {
     void searchPokemon();
   }
 
   return (
     <View style={[styles.screen, { paddingBottom: Math.max(insets.bottom, 12) }]}>
+      {/* Fondo decorativo "aero": brillos circulares + línea de luz superior */}
       <View pointerEvents="none" style={styles.backgroundLayer}>
         <View style={[styles.aeroGlow, styles.glowTop]} />
         <View style={[styles.aeroGlow, styles.glowBottom]} />
         <View style={styles.aeroHighlight} />
       </View>
+
+      {/* ─── [SECCIÓN] Encabezado (etiqueta + título + círculo rojo) ─── */}
       <View style={styles.header}>
         <View>
           <Text style={styles.eyebrow}>POKÉDEX / 001</Text>
@@ -43,12 +59,16 @@ export default function PokedexScreen() {
           <View style={styles.headerMarkDot} />
         </View>
       </View>
+
+      {/* Buscador: el texto vive en el contexto, no en esta pantalla */}
       <SearchBar
         onChangeQuery={setQuery}
         onSearch={handleSearch}
         placeholder="Nombre o ID..."
         query={query}
       />
+
+      {/* Contenido desplazable: galería + mensaje de error si lo hay */}
       <ScrollView contentContainerStyle={styles.content} showsVerticalScrollIndicator={false}>
         <PokemonGallery loading={loading} pokemon={pokemon} />
         {error && (
@@ -62,6 +82,8 @@ export default function PokedexScreen() {
   );
 }
 
+// ─── [SECCIÓN] Estilos ───
+// Paleta aero: fondo #d9edf8 | texto #123247 | acentos #35627a / #275972 | error #d86a5d
 const styles = StyleSheet.create({
   screen: { backgroundColor: '#d9edf8', flex: 1, overflow: 'hidden', paddingHorizontal: 20 },
   backgroundLayer: { ...StyleSheet.absoluteFill, overflow: 'hidden' },
