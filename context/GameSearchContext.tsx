@@ -7,8 +7,9 @@
 //           services/gamesRepo.ts (catálogo local en archivo), services/syncEngine.ts
 // USADO POR: app/(tabs)/games.tsx y app/(tabs)/game-info.tsx (comparten el mismo estado)
 // CAMBIOS:  búsqueda local → findGameLocal | catálogo → syncGamesCatalog |
-//           mensajes de error → getSearchErrorMessage
-// NOTA:     En web (sin almacenamiento local) se mantiene el comportamiento online clásico.
+//           mensajes de error → getSearchErrorMessage | respaldo web → findGameInSeed
+// NOTA:     En web (sin catálogo en archivo) la búsqueda usa primero el seed empaquetado
+//           y, si el juego no está ahí, intenta la API (sujeta a CORS del navegador).
 // ──────────────────────────────────────────────────────────────
 
 import { createContext, ReactNode, useContext, useEffect, useState } from 'react';
@@ -16,6 +17,7 @@ import * as Network from 'expo-network';
 import { INITIAL_GAME } from '@/constants/freetogame';
 import { fetchGameByQuery } from '@/services/juegosApi';
 import {
+  findGameInSeed,
   findGameLocal,
   isGamesStoreSupported,
   seedGamesCatalogFromBundle,
@@ -72,12 +74,21 @@ export function GameSearchProvider({ children }: { children: ReactNode }) {
       return;
     }
 
-    // Web: sin catálogo local → se consulta la API directamente (comportamiento clásico)
+    // Web: no hay catálogo en archivo → primero el seed empaquetado (sin red); si el
+    // juego no está ahí se intenta la API, que el navegador puede bloquear por CORS
     if (!isGamesStoreSupported) {
+      const local = findGameInSeed(clean);
+
+      if (local) {
+        setGame(local);
+        setLoading(false);
+        return;
+      }
+
       try {
         setGame(await fetchGameByQuery(value));
       } catch (searchError) {
-        console.error('[GameSearchContext] Web search failed:', searchError);
+        console.warn('[GameSearchContext] Web search without local match failed:', searchError);
         setGame(null);
         setError(getSearchErrorMessage(searchError));
       } finally {

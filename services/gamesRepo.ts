@@ -5,9 +5,10 @@
 //           dispositivo (expo-file-system) con el catálogo completo, no una tabla SQL.
 // DEPENDE:  expo-file-system, services/db.ts (soporte nativo), assets/games-seed.json
 // USADO POR: services/syncEngine.ts, context/GameSearchContext.tsx
-// CAMBIOS:  estructura del documento → GamesCatalog | archivo → CATALOG_FILE_NAME
-// NOTA:     En web no hay almacenamiento local de juegos; la app sigue en modo online
-//           clásico contra la API (ver context/GameSearchContext.tsx)
+// CAMBIOS:  estructura del documento → GamesCatalog | archivo → CATALOG_FILE_NAME |
+//           respaldo web → findGameInSeed (seed empaquetado, sin disco)
+// NOTA:     En web no hay catálogo en archivo; la búsqueda usa el seed empaquetado
+//           como respaldo (ver context/GameSearchContext.tsx)
 // ──────────────────────────────────────────────────────────────
 
 import { File, Paths } from 'expo-file-system';
@@ -66,15 +67,13 @@ export async function readGamesCatalog(): Promise<GamesCatalog> {
   }
 }
 
-// Busca localmente por ID (si la búsqueda es numérica) o por título:
-// primero exacto y, como último recurso offline, coincidencia parcial
-export async function findGameLocal(query: string): Promise<Game | null> {
+// Compara una lista de juegos contra la búsqueda: por ID (si es numérica), por título
+// exacto y, como último recurso, por coincidencia parcial (el título más corto gana)
+function matchGame(games: Game[], query: string): Game | null {
   const clean = query.trim().toLowerCase();
   if (!clean) {
     return null;
   }
-
-  const { games } = await readGamesCatalog();
 
   const numericId = Number(clean);
   if (Number.isInteger(numericId) && numericId > 0) {
@@ -95,6 +94,27 @@ export async function findGameLocal(query: string): Promise<Game | null> {
     .sort((a, b) => a.name.length - b.name.length);
 
   return partial[0] ?? null;
+}
+
+// Busca localmente en el archivo JSON del dispositivo (solo nativo)
+export async function findGameLocal(query: string): Promise<Game | null> {
+  if (!query.trim()) {
+    return null;
+  }
+
+  const { games } = await readGamesCatalog();
+  return matchGame(games, query);
+}
+
+// Busca en el catálogo empaquetado (assets/games-seed.json) sin tocar el disco:
+// respaldo de la web, donde no existe catálogo en archivo
+export function findGameInSeed(query: string): Game | null {
+  if (!query.trim()) {
+    return null;
+  }
+
+  const seed = gamesSeed as GamesCatalog;
+  return matchGame(seed.games, query);
 }
 
 // ─── [SECCIÓN] Escrituras locales ───

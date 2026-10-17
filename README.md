@@ -162,8 +162,10 @@ Cada módulo adapta su almacenamiento local al tipo de base de datos en línea:
 node scripts/generate-games-seed.mjs
 ```
 
-> Nota: el almacenamiento local está habilitado en Android/iOS. En web los tres módulos
-> funcionan en modo online clásico contra las APIs (sin caché offline).
+> Nota: el almacenamiento local está habilitado en Android/iOS. En web (sin caché) los
+> juegos usan el seed empaquetado como respaldo sin red; el resto consulta las APIs
+> directamente y queda sujeto a CORS (pokemon-api lo permite; docentes-api y games-api
+> aún no, así que en web esas búsquedas en línea pueden bloquearse).
 
 ## Validación
 

@@ -70,7 +70,7 @@ export default function GamesScreen() {
       {/* Contenido desplazable: galería de imágenes + mensaje de error si lo hay */}
       <ScrollView contentContainerStyle={styles.content} showsVerticalScrollIndicator={false}>
         <GameGallery game={game} loading={loading} />
-        {error && (
+        {error !== '' && (
           <View style={styles.errorBox}>
             <Ionicons name="alert-circle-outline" size={19} color="#d86a5d" />
             <Text style={styles.errorText}>{error}</Text>

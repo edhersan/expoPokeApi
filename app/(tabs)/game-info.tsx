@@ -70,7 +70,7 @@ export default function GameInfoScreen() {
       {/* Contenido desplazable: ficha técnica + mensaje de error si lo hay */}
       <ScrollView contentContainerStyle={styles.content} showsVerticalScrollIndicator={false}>
         <GameDetails game={game} loading={loading} />
-        {error && (
+        {error !== '' && (
           <View style={styles.errorBox}>
             <Ionicons name="alert-circle-outline" size={19} color="#d86a5d" />
             <Text style={styles.errorText}>{error}</Text>

@@ -3,7 +3,8 @@
 // FUNCIÓN:  Conexión con la API de videojuegos (FreeToGame)
 // DEPENDE:  constants/freetogame.ts (FREETOGAME_API_URL), types/index.ts (Game)
 // USADO POR: context/GameSearchContext.tsx → pantallas "Juegos" e "Info Juego"
-// CAMBIOS:  URL base → constants/freetogame.ts | nº de imágenes en la galería → .slice(0, 3)
+// CAMBIOS:  URL base → constants/freetogame.ts | nº de imágenes en la galería → .slice(0, 3) |
+//           fallo de red/CORS → console.warn (condición esperada offline/web)
 // ──────────────────────────────────────────────────────────────
 
 import { FREETOGAME_API_URL } from '@/constants/freetogame';
@@ -39,7 +40,7 @@ async function fetchGame(identifier: string): Promise<GameApiResponse> {
 
     return response.json();
   } catch (error) {
-    console.error('[GamesAPI] Fetch failed:', error);
+    console.warn('[GamesAPI] Fetch failed:', error);
     throw error;
   }
 }
