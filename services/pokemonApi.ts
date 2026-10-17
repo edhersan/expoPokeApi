@@ -9,6 +9,29 @@
 import { API_URL } from '@/constants/pokemon';
 import { Pokemon } from '@/types';
 
+// GET /pokemon → catálogo completo en formato liviano (id + nombre)
+// La usa el motor de sincronización para reconciliar la caché local
+export async function fetchPokemonList(): Promise<Array<{ id: number; name: string }>> {
+  const url = `${API_URL}/pokemon`;
+  console.log('[PokemonAPI] Fetching list:', url);
+
+  const response = await fetch(url);
+
+  if (!response.ok) {
+    const errorText = await response.text();
+    console.error('[PokemonAPI] List error response:', errorText);
+    throw new Error('POKEMON_LIST_FAILED');
+  }
+
+  const list = (await response.json()) as Array<{ id: number; name: string }>;
+
+  if (!Array.isArray(list)) {
+    throw new Error('INVALID_POKEMON_LIST');
+  }
+
+  return list;
+}
+
 // Busca un Pokémon por nombre o ID y devuelve su ficha ya normalizada al tipo `Pokemon`.
 // Lanza: 'EMPTY_QUERY' si la búsqueda está vacía | 'POKEMON_NOT_FOUND' si la API no lo encuentra
 export async function fetchPokemonByQuery(query: string): Promise<Pokemon> {

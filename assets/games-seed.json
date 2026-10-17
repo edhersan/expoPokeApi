@@ -1,0 +1,636 @@
+{
+  "version": 1,
+  "last_synced_at": null,
+  "games": [
+    {
+      "title": "Blade and Soul",
+      "platform": "PC (Windows)",
+      "genre": "MMORPG",
+      "release_date": "2016-01-19",
+      "release_year": null,
+      "game_id": 6,
+      "thumbnail": "https://www.freetogame.com/g/6/thumbnail.jpg",
+      "short_description": "A martial-arts action MMORPG with fast-paced combo-based combat.",
+      "description": "Blade & Soul is a Korean fantasy martial-arts action MMORPG developed by NCSOFT, featuring fast-paced action and martial arts combat.",
+      "game_url": "https://www.freetogame.com/open/blade-and-soul",
+      "publisher": "NCSoft",
+      "developer": "NCSoft",
+      "minimum_system_requirements": {
+        "os": "Windows 7",
+        "processor": "Intel Dual Core / AMD Athlon 64X2",
+        "memory": "3 GB RAM",
+        "graphics": "nVidia GeForce 8600GT / AMD Radeon HD4600",
+        "storage": "22 GB available space"
+      },
+      "screenshots": [
+        {
+          "id": 1,
+          "image": "https://www.freetogame.com/g/6/blade-and-soul-1.jpg"
+        },
+        {
+          "id": 2,
+          "image": "https://www.freetogame.com/g/6/blade-and-soul-2.jpg"
+        }
+      ],
+      "_id": "6abfd91adbe50eb9eec63a92",
+      "created_at": "2026-10-02T16:17:30.611000",
+      "updated_at": "2026-10-02T16:17:30.611000",
+      "id": 6,
+      "name": "Blade and Soul",
+      "images": [
+        "https://www.freetogame.com/g/6/thumbnail.jpg",
+        "https://www.freetogame.com/g/6/blade-and-soul-1.jpg",
+        "https://www.freetogame.com/g/6/blade-and-soul-2.jpg"
+      ],
+      "released": "2016-01-19"
+    },
+    {
+      "title": "CRSED: CUISINE ROYALE",
+      "platform": "PC (Windows)",
+      "genre": "Battle Royale",
+      "release_date": "2018-06-15",
+      "release_year": null,
+      "game_id": 4,
+      "thumbnail": "https://www.freetogame.com/g/4/thumbnail.jpg",
+      "short_description": "A brutal battle royale game with realistic weaponry and mystical black magic.",
+      "description": "CRSED: Cuisine Royale is an all-out free-for-all Battle Royale shooter with realistic weaponry, elements of mystical black magic and incredible superpowers!",
+      "game_url": "https://www.freetogame.com/open/crsed-cuisine-royale",
+      "publisher": "Gaijin Distribution KFT",
+      "developer": "Dark Flow Software",
+      "minimum_system_requirements": {
+        "os": "Windows 7 64bit /8 64bit /10 64bit",
+        "processor": "Intel Core i3",
+        "memory": "8 GB RAM",
+        "graphics": "Nvidia GeForce 560 or better, AMD Radeon 7770 or better",
+        "storage": "10 GB available space"
+      },
+      "screenshots": [
+        {
+          "id": 1,
+          "image": "https://www.freetogame.com/g/4/crsed-1.jpg"
+        },
+        {
+          "id": 2,
+          "image": "https://www.freetogame.com/g/4/crsed-2.jpg"
+        }
+      ],
+      "_id": "6abfd91adbe50eb9eec63a90",
+      "created_at": "2026-10-02T16:17:30.611000",
+      "updated_at": "2026-10-02T16:17:30.611000",
+      "id": 4,
+      "name": "CRSED: CUISINE ROYALE",
+      "images": [
+        "https://www.freetogame.com/g/4/thumbnail.jpg",
+        "https://www.freetogame.com/g/4/crsed-1.jpg",
+        "https://www.freetogame.com/g/4/crsed-2.jpg"
+      ],
+      "released": "2018-06-15"
+    },
+    {
+      "title": "Call Of Duty: Warzone",
+      "platform": "PC (Windows)",
+      "genre": "Shooter",
+      "release_date": "2020-03-10",
+      "release_year": null,
+      "game_id": 452,
+      "thumbnail": "https://www.freetogame.com/g/452/thumbnail.jpg",
+      "short_description": "A massive free-to-play combat arena from the world of Modern Warfare.",
+      "description": "Welcome to Warzone, the massive free-to-play combat arena which now features the brand-new map, Caldera.",
+      "game_url": "https://www.freetogame.com/open/call-of-duty-warzone",
+      "publisher": "Activision",
+      "developer": "Infinity Ward",
+      "minimum_system_requirements": {
+        "os": "Windows 10 64-bit",
+        "processor": "Intel Core i3-4340 or AMD FX-6300",
+        "memory": "8 GB RAM",
+        "graphics": "NVIDIA GeForce GTX 670 / GeForce GTX 1650 or Radeon HD 7950",
+        "storage": "175 GB available space"
+      },
+      "screenshots": [
+        {
+          "id": 1,
+          "image": "https://www.freetogame.com/g/452/call-of-duty-warzone-1.jpg"
+        },
+        {
+          "id": 2,
+          "image": "https://www.freetogame.com/g/452/call-of-duty-warzone-2.jpg"
+        }
+      ],
+      "_id": "6abfd91adbe50eb9eec63a8b",
+      "created_at": "2026-10-02T16:17:30.611000",
+      "updated_at": "2026-10-02T16:17:30.611000",
+      "id": 452,
+      "name": "Call Of Duty: Warzone",
+      "images": [
+        "https://www.freetogame.com/g/452/thumbnail.jpg",
+        "https://www.freetogame.com/g/452/call-of-duty-warzone-1.jpg",
+        "https://www.freetogame.com/g/452/call-of-duty-warzone-2.jpg"
+      ],
+      "released": "2020-03-10"
+    },
+    {
+      "title": "Crossout",
+      "platform": "PC (Windows)",
+      "genre": "Shooter",
+      "release_date": "2017-05-30",
+      "release_year": null,
+      "game_id": 5,
+      "thumbnail": "https://www.freetogame.com/g/5/thumbnail.jpg",
+      "short_description": "A post-apocalyptic MMO action game where players construct deadly battle machines.",
+      "description": "Crossout is the post-apocalyptic MMO Action game! Craft your unique battle machines from dozens of interchangeable parts and destroy your enemies in explosive PvP online battles!",
+      "game_url": "https://www.freetogame.com/open/crossout",
+      "publisher": "Gaijin Entertainment",
+      "developer": "Targem Games",
+      "minimum_system_requirements": {
+        "os": "Windows 7 / 8 / 10 64-bit",
+        "processor": "Intel Core 2 Duo E8500 or AMD Phenom II X3 720",
+        "memory": "4 GB RAM",
+        "graphics": "NVIDIA GeForce GT 440 or AMD Radeon HD 5670 or Intel HD Graphics 5000",
+        "storage": "7 GB available space"
+      },
+      "screenshots": [
+        {
+          "id": 1,
+          "image": "https://www.freetogame.com/g/5/crossout-1.jpg"
+        },
+        {
+          "id": 2,
+          "image": "https://www.freetogame.com/g/5/crossout-2.jpg"
+        }
+      ],
+      "_id": "6abfd91adbe50eb9eec63a91",
+      "created_at": "2026-10-02T16:17:30.611000",
+      "updated_at": "2026-10-02T16:17:30.611000",
+      "id": 5,
+      "name": "Crossout",
+      "images": [
+        "https://www.freetogame.com/g/5/thumbnail.jpg",
+        "https://www.freetogame.com/g/5/crossout-1.jpg",
+        "https://www.freetogame.com/g/5/crossout-2.jpg"
+      ],
+      "released": "2017-05-30"
+    },
+    {
+      "title": "Destiny 2",
+      "platform": "PC (Windows)",
+      "genre": "Shooter",
+      "release_date": "2019-10-01",
+      "release_year": null,
+      "game_id": 21,
+      "thumbnail": "https://www.freetogame.com/g/21/thumbnail.jpg",
+      "short_description": "Dive into the world of Destiny 2 to explore the mysteries of the solar system.",
+      "description": "Destiny 2 is an action MMO with a single evolving world that you and your friends can join anytime, anywhere, absolutely free.",
+      "game_url": "https://www.freetogame.com/open/destiny-2",
+      "publisher": "Bungie",
+      "developer": "Bungie",
+      "minimum_system_requirements": {
+        "os": "Windows 7 / Windows 8.1 / Windows 10 64-bit",
+        "processor": "Intel Core i3 3250 3.5 GHz or AMD FX-4350 4.2 GHz",
+        "memory": "6 GB RAM",
+        "graphics": "NVIDIA GeForce GTX 660 2GB or AMD Radeon HD 7850 2GB",
+        "storage": "105 GB available space"
+      },
+      "screenshots": [
+        {
+          "id": 1,
+          "image": "https://www.freetogame.com/g/21/destiny-2-1.jpg"
+        },
+        {
+          "id": 2,
+          "image": "https://www.freetogame.com/g/21/destiny-2-2.jpg"
+        }
+      ],
+      "_id": "6abfd91adbe50eb9eec63a8a",
+      "created_at": "2026-10-02T16:17:30.611000",
+      "updated_at": "2026-10-02T16:17:30.611000",
+      "id": 21,
+      "name": "Destiny 2",
+      "images": [
+        "https://www.freetogame.com/g/21/thumbnail.jpg",
+        "https://www.freetogame.com/g/21/destiny-2-1.jpg",
+        "https://www.freetogame.com/g/21/destiny-2-2.jpg"
+      ],
+      "released": "2019-10-01"
+    },
+    {
+      "title": "Diablo Immortal",
+      "platform": "PC (Windows)",
+      "genre": "MMORPG",
+      "release_date": "2022-06-02",
+      "release_year": null,
+      "game_id": 521,
+      "thumbnail": "https://www.freetogame.com/g/521/thumbnail.jpg",
+      "short_description": "A free-to-play massively multiplayer online action role-playing game.",
+      "description": "Diablo Immortal is a brand-new game in Blizzard Entertainment's genre-defining action role-playing game series set between the events of Diablo II: Lord of Destruction and Diablo III.",
+      "game_url": "https://www.freetogame.com/open/diablo-immortal",
+      "publisher": "Blizzard Entertainment",
+      "developer": "Blizzard Entertainment",
+      "minimum_system_requirements": {
+        "os": "Windows 7 / Windows 8 / Windows 10 / Windows 11 (64-bit)",
+        "processor": "Intel Core i3 or AMD FX-4100",
+        "memory": "4 GB RAM",
+        "graphics": "NVIDIA GeForce GTX 460, ATI Radeon HD 6850",
+        "storage": "24 GB available space"
+      },
+      "screenshots": [
+        {
+          "id": 1,
+          "image": "https://www.freetogame.com/g/521/diablo-immortal-1.jpg"
+        },
+        {
+          "id": 2,
+          "image": "https://www.freetogame.com/g/521/diablo-immortal-2.jpg"
+        }
+      ],
+      "_id": "6abfd91adbe50eb9eec63a8c",
+      "created_at": "2026-10-02T16:17:30.611000",
+      "updated_at": "2026-10-02T16:17:30.611000",
+      "id": 521,
+      "name": "Diablo Immortal",
+      "images": [
+        "https://www.freetogame.com/g/521/thumbnail.jpg",
+        "https://www.freetogame.com/g/521/diablo-immortal-1.jpg",
+        "https://www.freetogame.com/g/521/diablo-immortal-2.jpg"
+      ],
+      "released": "2022-06-02"
+    },
+    {
+      "title": "Guild Wars 2",
+      "platform": "PC (Windows)",
+      "genre": "MMORPG",
+      "release_date": "2012-08-28",
+      "release_year": null,
+      "game_id": 7,
+      "thumbnail": "https://www.freetogame.com/g/7/thumbnail.jpg",
+      "short_description": "An online role-playing game with fast-paced combat and a rich universe.",
+      "description": "Guild Wars 2 is an online role-playing game with fast-paced combat, deep character customization, and a huge living world.",
+      "game_url": "https://www.freetogame.com/open/guild-wars-2",
+      "publisher": "NCSoft",
+      "developer": "ArenaNet",
+      "minimum_system_requirements": {
+        "os": "Windows 7 or better (64 bit only)",
+        "processor": "Intel Core 2 Duo 2.4 GHz, AMD Athlon 64 X2 5600+",
+        "memory": "4 GB RAM",
+        "graphics": "NVIDIA GeForce 8800GT, ATI Radeon HD 3870",
+        "storage": "50 GB available space"
+      },
+      "screenshots": [
+        {
+          "id": 1,
+          "image": "https://www.freetogame.com/g/7/guild-wars-2-1.jpg"
+        },
+        {
+          "id": 2,
+          "image": "https://www.freetogame.com/g/7/guild-wars-2-2.jpg"
+        }
+      ],
+      "_id": "6abfd91adbe50eb9eec63a93",
+      "created_at": "2026-10-02T16:17:30.611000",
+      "updated_at": "2026-10-02T16:17:30.611000",
+      "id": 7,
+      "name": "Guild Wars 2",
+      "images": [
+        "https://www.freetogame.com/g/7/thumbnail.jpg",
+        "https://www.freetogame.com/g/7/guild-wars-2-1.jpg",
+        "https://www.freetogame.com/g/7/guild-wars-2-2.jpg"
+      ],
+      "released": "2012-08-28"
+    },
+    {
+      "title": "Lost Ark",
+      "platform": "PC (Windows)",
+      "genre": "ARPG",
+      "release_date": "2022-02-11",
+      "release_year": null,
+      "game_id": 517,
+      "thumbnail": "https://www.freetogame.com/g/517/thumbnail.jpg",
+      "short_description": "Embark on an odyssey for the Lost Ark in a vast, vibrant world.",
+      "description": "Embark on an odyssey for the Lost Ark in a vast, vibrant world: explore new lands, seek out lost treasures, and test yourself in thrilling action combat.",
+      "game_url": "https://www.freetogame.com/open/lost-ark",
+      "publisher": "Amazon Games",
+      "developer": "Smilegate RPG",
+      "minimum_system_requirements": {
+        "os": "Windows 10 (64-bit only)",
+        "processor": "Intel i3 or AMD Ryzen 3",
+        "memory": "8 GB RAM",
+        "graphics": "NVIDIA GeForce GTX 460 / AMD Radeon HD 6850",
+        "storage": "50 GB available space"
+      },
+      "screenshots": [
+        {
+          "id": 1,
+          "image": "https://www.freetogame.com/g/517/lost-ark-1.jpg"
+        },
+        {
+          "id": 2,
+          "image": "https://www.freetogame.com/g/517/lost-ark-2.jpg"
+        }
+      ],
+      "_id": "6abfd91adbe50eb9eec63a89",
+      "created_at": "2026-10-02T16:17:30.611000",
+      "updated_at": "2026-10-02T16:17:30.611000",
+      "id": 517,
+      "name": "Lost Ark",
+      "images": [
+        "https://www.freetogame.com/g/517/thumbnail.jpg",
+        "https://www.freetogame.com/g/517/lost-ark-1.jpg",
+        "https://www.freetogame.com/g/517/lost-ark-2.jpg"
+      ],
+      "released": "2022-02-11"
+    },
+    {
+      "title": "Overwatch 2",
+      "platform": "PC (Windows)",
+      "genre": "Shooter",
+      "release_date": "2022-10-04",
+      "release_year": null,
+      "game_id": 540,
+      "thumbnail": "https://www.freetogame.com/g/540/thumbnail.jpg",
+      "short_description": "A hero-focused team-based action game set in an optimistic future.",
+      "description": "Overwatch 2 is a free-to-play, team-based action game set in the optimistic future, where every match is the ultimate 5v5 battlefield brawl.",
+      "game_url": "https://www.freetogame.com/open/overwatch-2",
+      "publisher": "Blizzard Entertainment",
+      "developer": "Blizzard Entertainment",
+      "minimum_system_requirements": {
+        "os": "Windows 10 64-bit",
+        "processor": "Intel Core i3 or AMD Phenom X3 8650",
+        "memory": "6 GB RAM",
+        "graphics": "NVIDIA GeForce GTX 600 series, AMD Radeon HD 7000 series",
+        "storage": "50 GB available space"
+      },
+      "screenshots": [
+        {
+          "id": 1,
+          "image": "https://www.freetogame.com/g/540/overwatch-2-1.jpg"
+        },
+        {
+          "id": 2,
+          "image": "https://www.freetogame.com/g/540/overwatch-2-2.jpg"
+        }
+      ],
+      "_id": "6abfd91adbe50eb9eec63a88",
+      "created_at": "2026-10-02T16:17:30.611000",
+      "updated_at": "2026-10-02T16:17:30.611000",
+      "id": 540,
+      "name": "Overwatch 2",
+      "images": [
+        "https://www.freetogame.com/g/540/thumbnail.jpg",
+        "https://www.freetogame.com/g/540/overwatch-2-1.jpg",
+        "https://www.freetogame.com/g/540/overwatch-2-2.jpg"
+      ],
+      "released": "2022-10-04"
+    },
+    {
+      "title": "Path of Exile",
+      "platform": "PC (Windows)",
+      "genre": "ARPG",
+      "release_date": "2013-10-23",
+      "release_year": null,
+      "game_id": 11,
+      "thumbnail": "https://www.freetogame.com/g/11/thumbnail.jpg",
+      "short_description": "A free-to-play online action RPG set in the dark fantasy world of Wraeclast.",
+      "description": "Path of Exile is a free-to-play online Action RPG set in the dark fantasy world of Wraeclast. It is designed around a strong bartering economy, deep character customization, competitive PvP and endgame races.",
+      "game_url": "https://www.freetogame.com/open/path-of-exile",
+      "publisher": "Grinding Gear Games",
+      "developer": "Grinding Gear Games",
+      "minimum_system_requirements": {
+        "os": "Windows 7 SP1/Windows 8",
+        "processor": "x86-compatible 2.6GHz or better",
+        "memory": "8 GB RAM",
+        "graphics": "NVIDIA GeForce GTX 650 Ti or ATI Radeon HD 7850",
+        "storage": "40 GB available space"
+      },
+      "screenshots": [
+        {
+          "id": 1,
+          "image": "https://www.freetogame.com/g/11/path-of-exile-1.jpg"
+        },
+        {
+          "id": 2,
+          "image": "https://www.freetogame.com/g/11/path-of-exile-2.jpg"
+        }
+      ],
+      "_id": "6abfd91adbe50eb9eec63a87",
+      "created_at": "2026-10-02T16:17:30.611000",
+      "updated_at": "2026-10-02T16:17:30.611000",
+      "id": 11,
+      "name": "Path of Exile",
+      "images": [
+        "https://www.freetogame.com/g/11/thumbnail.jpg",
+        "https://www.freetogame.com/g/11/path-of-exile-1.jpg",
+        "https://www.freetogame.com/g/11/path-of-exile-2.jpg"
+      ],
+      "released": "2013-10-23"
+    },
+    {
+      "title": "Trove",
+      "platform": "PC (Windows)",
+      "genre": "MMORPG",
+      "release_date": "2015-07-09",
+      "release_year": null,
+      "game_id": 8,
+      "thumbnail": "https://www.freetogame.com/g/8/thumbnail.jpg",
+      "short_description": "A voxel-based sandbox MMORPG featuring endless procedurally-generated worlds.",
+      "description": "Grab your friends, hone your blades, and set off for adventure in Trove, the ultimate voxel action MMO!",
+      "game_url": "https://www.freetogame.com/open/trove",
+      "publisher": "Trion Worlds",
+      "developer": "Trion Worlds",
+      "minimum_system_requirements": {
+        "os": "Windows 7 64-bit",
+        "processor": "Intel Core i3-2100 or AMD FX-4100",
+        "memory": "1 GB RAM",
+        "graphics": "Intel HD Graphics 3000 or better",
+        "storage": "1 GB available space"
+      },
+      "screenshots": [
+        {
+          "id": 1,
+          "image": "https://www.freetogame.com/g/8/trove-1.jpg"
+        },
+        {
+          "id": 2,
+          "image": "https://www.freetogame.com/g/8/trove-2.jpg"
+        }
+      ],
+      "_id": "6abfd91adbe50eb9eec63a94",
+      "created_at": "2026-10-02T16:17:30.611000",
+      "updated_at": "2026-10-02T16:17:30.611000",
+      "id": 8,
+      "name": "Trove",
+      "images": [
+        "https://www.freetogame.com/g/8/thumbnail.jpg",
+        "https://www.freetogame.com/g/8/trove-1.jpg",
+        "https://www.freetogame.com/g/8/trove-2.jpg"
+      ],
+      "released": "2015-07-09"
+    },
+    {
+      "title": "War Thunder",
+      "platform": "PC (Windows)",
+      "genre": "Shooter",
+      "release_date": "2013-08-15",
+      "release_year": null,
+      "game_id": 3,
+      "thumbnail": "https://www.freetogame.com/g/3/thumbnail.jpg",
+      "short_description": "A vehicular combat multiplayer video game dedicated to military aviation, armored vehicles, and naval craft.",
+      "description": "War Thunder is a vehicular combat multiplayer video game dedicated to military aviation, armored vehicles, and naval craft from World War II and the Cold War.",
+      "game_url": "https://www.freetogame.com/open/war-thunder",
+      "publisher": "Gaijin Entertainment",
+      "developer": "Gaijin Entertainment",
+      "minimum_system_requirements": {
+        "os": "Windows 7 SP1/8/10",
+        "processor": "Dual-Core 2.2 GHz",
+        "memory": "4 GB RAM",
+        "graphics": "Intel HD Graphics 5100 / AMD Radeon R7 240 / NVIDIA GeForce GT 420",
+        "storage": "17 GB available space"
+      },
+      "screenshots": [
+        {
+          "id": 1,
+          "image": "https://www.freetogame.com/g/3/war-thunder-1.jpg"
+        },
+        {
+          "id": 2,
+          "image": "https://www.freetogame.com/g/3/war-thunder-2.jpg"
+        }
+      ],
+      "_id": "6abfd91adbe50eb9eec63a8f",
+      "created_at": "2026-10-02T16:17:30.611000",
+      "updated_at": "2026-10-02T16:17:30.611000",
+      "id": 3,
+      "name": "War Thunder",
+      "images": [
+        "https://www.freetogame.com/g/3/thumbnail.jpg",
+        "https://www.freetogame.com/g/3/war-thunder-1.jpg",
+        "https://www.freetogame.com/g/3/war-thunder-2.jpg"
+      ],
+      "released": "2013-08-15"
+    },
+    {
+      "title": "Warframe",
+      "platform": "PC (Windows)",
+      "genre": "Shooter",
+      "release_date": "2013-03-25",
+      "release_year": null,
+      "game_id": 9,
+      "thumbnail": "https://www.freetogame.com/g/9/thumbnail.jpg",
+      "short_description": "A cooperative free-to-play third-person online action shooter.",
+      "description": "Warframe is a cooperative free-to-play third-person online action shooter set in an evolving sci-fi world.",
+      "game_url": "https://www.freetogame.com/open/warframe",
+      "publisher": "Digital Extremes",
+      "developer": "Digital Extremes",
+      "minimum_system_requirements": {
+        "os": "Windows 7 64-Bit",
+        "processor": "Intel Core i3-2120 or AMD Phenom II X4 945",
+        "memory": "4 GB RAM",
+        "graphics": "DirectX 11+ capable graphics card",
+        "storage": "35 GB available space"
+      },
+      "screenshots": [
+        {
+          "id": 1,
+          "image": "https://www.freetogame.com/g/9/warframe-1.jpg"
+        },
+        {
+          "id": 2,
+          "image": "https://www.freetogame.com/g/9/warframe-2.jpg"
+        }
+      ],
+      "_id": "6abfd91adbe50eb9eec63a95",
+      "created_at": "2026-10-02T16:17:30.611000",
+      "updated_at": "2026-10-02T16:17:30.611000",
+      "id": 9,
+      "name": "Warframe",
+      "images": [
+        "https://www.freetogame.com/g/9/thumbnail.jpg",
+        "https://www.freetogame.com/g/9/warframe-1.jpg",
+        "https://www.freetogame.com/g/9/warframe-2.jpg"
+      ],
+      "released": "2013-03-25"
+    },
+    {
+      "title": "World of Tanks",
+      "platform": "PC (Windows)",
+      "genre": "Shooter",
+      "release_date": "2011-04-12",
+      "release_year": null,
+      "game_id": 1,
+      "thumbnail": "https://www.freetogame.com/g/1/thumbnail.jpg",
+      "short_description": "A team-based 3D massively multiplayer online action game.",
+      "description": "World of Tanks is a team-based 3D massively multiplayer online action game dedicated to armored warfare in the mid-20th century.",
+      "game_url": "https://www.freetogame.com/open/world-of-tanks",
+      "publisher": "Wargaming",
+      "developer": "Wargaming",
+      "minimum_system_requirements": {
+        "os": "Windows 7 / 8 / 10",
+        "processor": "Intel Core 2 Duo 2.2 GHz / AMD Athlon 64 X2 4400+",
+        "memory": "2 GB RAM",
+        "graphics": "NVIDIA GeForce 8600 / ATI Radeon HD 4550",
+        "storage": "40 GB available space"
+      },
+      "screenshots": [
+        {
+          "id": 1,
+          "image": "https://www.freetogame.com/g/1/world-of-tanks-1.jpg"
+        },
+        {
+          "id": 2,
+          "image": "https://www.freetogame.com/g/1/world-of-tanks-2.jpg"
+        }
+      ],
+      "_id": "6abfd91adbe50eb9eec63a8d",
+      "created_at": "2026-10-02T16:17:30.611000",
+      "updated_at": "2026-10-02T16:17:30.611000",
+      "id": 1,
+      "name": "World of Tanks",
+      "images": [
+        "https://www.freetogame.com/g/1/thumbnail.jpg",
+        "https://www.freetogame.com/g/1/world-of-tanks-1.jpg",
+        "https://www.freetogame.com/g/1/world-of-tanks-2.jpg"
+      ],
+      "released": "2011-04-12"
+    },
+    {
+      "title": "World of Warships",
+      "platform": "PC (Windows)",
+      "genre": "Shooter",
+      "release_date": "2015-09-17",
+      "release_year": null,
+      "game_id": 2,
+      "thumbnail": "https://www.freetogame.com/g/2/thumbnail.jpg",
+      "short_description": "A 3D action naval action MMO with historical naval vessels.",
+      "description": "World of Warships is a 3D action naval action MMO with historical naval vessels from the early 20th century.",
+      "game_url": "https://www.freetogame.com/open/world-of-warships",
+      "publisher": "Wargaming",
+      "developer": "Wargaming",
+      "minimum_system_requirements": {
+        "os": "Windows 7 SP1 64-bit",
+        "processor": "Intel Core 2 Duo 2.66 GHz / AMD Athlon II X2 2.7 GHz",
+        "memory": "2.5 GB RAM",
+        "graphics": "NVIDIA GeForce 8800GT / AMD Radeon HD 4650",
+        "storage": "61 GB available space"
+      },
+      "screenshots": [
+        {
+          "id": 1,
+          "image": "https://www.freetogame.com/g/2/world-of-warships-1.jpg"
+        },
+        {
+          "id": 2,
+          "image": "https://www.freetogame.com/g/2/world-of-warships-2.jpg"
+        }
+      ],
+      "_id": "6abfd91adbe50eb9eec63a8e",
+      "created_at": "2026-10-02T16:17:30.611000",
+      "updated_at": "2026-10-02T16:17:30.611000",
+      "id": 2,
+      "name": "World of Warships",
+      "images": [
+        "https://www.freetogame.com/g/2/thumbnail.jpg",
+        "https://www.freetogame.com/g/2/world-of-warships-1.jpg",
+        "https://www.freetogame.com/g/2/world-of-warships-2.jpg"
+      ],
+      "released": "2015-09-17"
+    }
+  ]
+}

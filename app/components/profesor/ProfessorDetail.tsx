@@ -3,7 +3,8 @@
 // FUNCIÓN:  Ficha completa de un profesor (vista de detalle al tocar una tarjeta)
 //           Muestra avatar, nombre, títulos, experiencia, biografía y áreas de estudio
 // USADO POR: profesor.tsx (cuando selectedProfessor no es null)
-// CAMBIOS:  secciones de la ficha → JSX del return | estilos → profesorStyles.ts
+// CAMBIOS:  tag "NUEVO" para inserciones de la nube | secciones de la ficha → JSX del return |
+//           estilos → profesorStyles.ts
 // ──────────────────────────────────────────────────────────────
 
 import { Ionicons } from '@expo/vector-icons';
@@ -43,6 +44,20 @@ export default function ProfessorDetail({ professor, onBack }: ProfessorDetailPr
         <Text style={styles.kicker}>PERFIL DEL PROFESOR</Text>
         <Text style={styles.detailName}>{professor.name}</Text>
         <Text style={styles.detailSpecialty}>{professor.specialty}</Text>
+        {/* Inserto bajado de la nube en el último monitoreo */}
+        {professor.isNew ? (
+          <View style={styles.newTag}>
+            <Ionicons name="sparkles" size={13} color="#1d7d52" />
+            <Text style={styles.newTagText}>NUEVO EN EL DIRECTORIO</Text>
+          </View>
+        ) : null}
+        {/* Aviso discreto: el registro se guardó local y aún no subió al servidor */}
+        {professor.pending ? (
+          <View style={styles.pendingTag}>
+            <Ionicons name="cloud-offline-outline" size={13} color="#c0392b" />
+            <Text style={styles.pendingTagText}>PENDIENTE DE SINCRONIZAR</Text>
+          </View>
+        ) : null}
       </View>
 
       {/* Tarjetas de metadatos: títulos y experiencia */}

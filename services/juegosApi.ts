@@ -52,6 +52,29 @@ function stripHtml(value: string): string {
     .trim();
 }
 
+// GET /games → catálogo completo en formato liviano (solo títulos)
+// La usa el motor de sincronización para reconciliar el catálogo local
+export async function fetchGamesList(): Promise<string[]> {
+  const url = `${FREETOGAME_API_URL}/games`;
+  console.log('[GamesAPI] Fetching list:', url);
+
+  const response = await fetch(url);
+
+  if (!response.ok) {
+    const errorText = await response.text();
+    console.error('[GamesAPI] List error response:', errorText);
+    throw new Error('GAMES_LIST_FAILED');
+  }
+
+  const list = (await response.json()) as string[];
+
+  if (!Array.isArray(list)) {
+    throw new Error('INVALID_GAMES_LIST');
+  }
+
+  return list;
+}
+
 // Busca un videojuego por nombre y devuelve su ficha ya normalizada al tipo `Game`.
 // Lanza: 'EMPTY_QUERY' si la búsqueda está vacía | 'GAME_NOT_FOUND' si no existe
 export async function fetchGameByQuery(query: string): Promise<Game> {

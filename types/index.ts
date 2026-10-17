@@ -67,7 +67,16 @@ export interface Professor {
   // Títulos ya separados en una lista (los usa "ÁREAS DE ESTUDIO" en ProfessorDetail)
   subjects: string[];
   imageUrl: string;
+  // true cuando el registro tiene cambios locales aún no subidos al servidor
+  // (lo asigna services/professorsRepo.ts según la cola de sincronización)
+  pending?: boolean;
+  // true cuando el registro se insertó en la nube y aún no se ha abierto en este
+  // dispositivo (indicador "NUEVO"; se limpia al consultar la ficha)
+  isNew?: boolean;
 }
+
+// Operación de la cola de sincronización offline (services/professorsRepo.ts)
+export type SyncOperation = 'create' | 'update' | 'delete';
 
 // Errores de búsqueda que lanzan los servicios de Pokémon y juegos;
 // los traduce a mensajes en español context/PokemonSearchContext.tsx y GameSearchContext.tsx

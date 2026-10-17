@@ -11,27 +11,31 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { StatusBar, StyleSheet } from 'react-native';
 import { GameSearchProvider } from '@/context/GameSearchContext';
 import { PokemonSearchProvider } from '@/context/PokemonSearchContext';
+import { ProfessorsProvider } from '@/context/ProfessorsContext';
 
 export default function RootLayout() {
   return (
     // Providers de estado global: envuelven toda la app para que las pestañas
-    // de Pokémon y de Juegos compartan su búsqueda (ver context/*)
+    // de Pokémon y de Juegos compartan su búsqueda (ver context/*).
+    // ProfessorsProvider añade el directorio offline-first del módulo de profesores.
     <PokemonSearchProvider>
       <GameSearchProvider>
-        {/* SafeAreaProvider: respeta el notch/barra de estado del dispositivo */}
-        <SafeAreaProvider>
-          {/* Barra de estado del sistema (reloj, batería) en tono oscuro */}
-          <StatusBar barStyle="dark-content" backgroundColor="#d9edf8" />
-          {/* Stack de navegación: header oculto (cada pantalla trae el suyo propio) */}
-          <Stack
-            screenOptions={{
-              headerShown: false,
-              contentStyle: styles.container,
-            }}
-          >
-            <Stack.Screen name="(tabs)" />
-          </Stack>
-        </SafeAreaProvider>
+        <ProfessorsProvider>
+          {/* SafeAreaProvider: respeta el notch/barra de estado del dispositivo */}
+          <SafeAreaProvider>
+            {/* Barra de estado del sistema (reloj, batería) en tono oscuro */}
+            <StatusBar barStyle="dark-content" backgroundColor="#d9edf8" />
+            {/* Stack de navegación: header oculto (cada pantalla trae el suyo propio) */}
+            <Stack
+              screenOptions={{
+                headerShown: false,
+                contentStyle: styles.container,
+              }}
+            >
+              <Stack.Screen name="(tabs)" />
+            </Stack>
+          </SafeAreaProvider>
+        </ProfessorsProvider>
       </GameSearchProvider>
     </PokemonSearchProvider>
   );

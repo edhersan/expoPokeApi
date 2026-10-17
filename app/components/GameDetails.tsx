@@ -9,7 +9,7 @@
 import { Ionicons } from '@expo/vector-icons';
 import { ScrollView, StyleSheet, Text, View } from 'react-native';
 import React from 'react';
-import { Game } from '../types';
+import { Game } from '@/types';
 
 interface GameDetailsProps {
   game: Game | null;

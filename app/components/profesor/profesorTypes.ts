@@ -40,9 +40,11 @@ export const EMPTY_FORM: FormValues = {
 };
 
 // Convierte un error del servicio en mensaje amigable (con código HTTP si existe)
+// Los cambios se guardan siempre en local; este mensaje cubre fallos de escritura
+// o errores del servidor durante la sincronización en segundo plano.
 export function describeError(error: unknown): string {
   if (error instanceof ProfessorsApiError && error.status) {
-    return `La API respondió con un error (${error.status}).`;
+    return `El servidor respondió con un error (${error.status}).`;
   }
-  return 'No pudimos conectar con la API.';
+  return 'No pudimos guardar el cambio en este dispositivo.';
 }

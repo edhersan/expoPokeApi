@@ -8,7 +8,7 @@
 
 import { Platform, ActivityIndicator, Image, StyleSheet, Text, View } from 'react-native';
 import React from 'react';
-import { Game } from '../types';
+import { Game } from '@/types';
 
 interface GameGalleryProps {
   game: Game | null;

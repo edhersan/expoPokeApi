@@ -1,12 +1,12 @@
 // ──────────────────────────────────────────────────────────────
 // ARCHIVO:  app/(tabs)/profesor.tsx
 // FUNCIÓN:  Pantalla "Profesor" → orquestador del módulo: guarda el estado del
-//           directorio y del formulario, ejecuta el CRUD y compone las piezas
-// DEPENDE:  services/profesoresApi.ts (CRUD), components/profesor/* (UI)
+//           formulario, ejecuta el CRUD (offline-first vía ProfessorsContext) y compone las piezas
+// DEPENDE:  context/ProfessorsContext.tsx (CRUD + sync), components/profesor/* (UI)
 // USADO POR: pestaña 5 de la app (ver app/(tabs)/_layout.tsx)
-// CAMBIOS:  lógica de CRUD → loadProfessors / submitForm / confirmDelete |
-//           composición de la vista → JSX del return | campos del formulario →
-//           app/components/profesor/ProfessorForm.tsx + profesorTypes.ts
+// CAMBIOS:  lógica de CRUD → useProfessors() | composición de la vista → JSX del return |
+//           badge "NUEVO" se limpia al abrir la ficha → handleSelect + markProfessorSeen |
+//           campos del formulario → app/components/profesor/ProfessorForm.tsx + profesorTypes.ts
 // ESTRUCTURA DEL MÓDULO:
 //           app/components/profesor/profesorTypes.ts       (tipos y helpers)
 //           app/components/profesor/profesorStyles.ts      (estilos compartidos)
@@ -20,15 +20,9 @@
 import { Ionicons } from '@expo/vector-icons';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Alert, ScrollView, Text, useWindowDimensions, View } from 'react-native';
-import { useCallback, useEffect, useState } from 'react';
-import {
-  createProfessor,
-  deleteProfessor,
-  fetchProfessors,
-  ProfessorUpdatePayload,
-  ProfessorsApiError,
-  updateProfessor,
-} from '@/services/profesoresApi';
+import { useCallback, useState } from 'react';
+import { useProfessors } from '@/context/ProfessorsContext';
+import { ProfessorUpdatePayload } from '@/services/profesoresApi';
 import { Professor } from '@/types';
 import ProfessorDirectory from '@/components/profesor/ProfessorDirectory';
 import ProfessorDetail from '@/components/profesor/ProfessorDetail';
@@ -48,13 +42,26 @@ export default function ProfessorScreen() {
   // Ancho de pantalla, usado por el menú kebab para posicionarse desde la derecha
   const { width: windowWidth } = useWindowDimensions();
 
-  // ── [ESTADO] Directorio ──
-  const [professors, setProfessors] = useState<Professor[]>([]);
-  const [selectedProfessor, setSelectedProfessor] = useState<Professor | null>(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+  // ── [CONTEXTO] Directorio offline-first: datos locales + sincronización ──
+  const {
+    professors,
+    loading,
+    error,
+    isOffline,
+    pendingCount,
+    newCount,
+    syncing,
+    pollIntervalMs,
+    createProfessor,
+    updateProfessor,
+    deleteProfessor,
+    markProfessorSeen,
+    setPollInterval,
+    syncNow,
+  } = useProfessors();
 
-  // ── [ESTADO] Menú kebab (⋮) y formulario modal ──
+  // ── [ESTADO] Selección, menú kebab (⋮) y formulario modal ──
+  const [selectedProfessor, setSelectedProfessor] = useState<Professor | null>(null);
   const [menu, setMenu] = useState<{ professor: Professor; anchor: MenuAnchor } | null>(null);
   const [formVisible, setFormVisible] = useState(false);
   const [formMode, setFormMode] = useState<FormMode>('create');
@@ -63,27 +70,16 @@ export default function ProfessorScreen() {
   const [saving, setSaving] = useState(false);
   const [formError, setFormError] = useState<string | null>(null);
 
-  // ─── [SECCIÓN] Carga del directorio ───
+  // ─── [SECCIÓN] Acciones del directorio ───
 
-  // Descarga la lista completa del directorio (GET /api/profesores)
-  const loadProfessors = useCallback(async () => {
-    setLoading(true);
-    setError(null);
-
-    try {
-      setProfessors(await fetchProfessors());
-    } catch (loadError) {
-      console.error('[ProfesorScreen] Failed to load professors:', loadError);
-      setError(describeError(loadError));
-    } finally {
-      setLoading(false);
-    }
-  }, []);
-
-  // Carga inicial de la lista al montar la pantalla
-  useEffect(() => {
-    void loadProfessors();
-  }, [loadProfessors]);
+  // Abre la ficha del profesor y quita su badge "NUEVO" (visto en este dispositivo)
+  const handleSelect = useCallback(
+    (professor: Professor) => {
+      setSelectedProfessor(professor);
+      void markProfessorSeen(professor);
+    },
+    [markProfessorSeen],
+  );
 
   // ─── [SECCIÓN] Acciones del formulario (crear / editar) ───
 
@@ -120,7 +116,8 @@ export default function ProfessorScreen() {
     setFormError(null);
   }, []);
 
-  // Valida y envía el formulario: POST al crear, PUT al editar
+  // Valida y envía el formulario: crea o edita (siempre primero en local; la API
+  // se actualiza en segundo plano cuando hay conexión)
   const submitForm = useCallback(async () => {
     const nombre = form.nombre.trim();
     const apellido = form.apellido.trim();
@@ -146,58 +143,51 @@ export default function ProfessorScreen() {
 
     try {
       if (formMode === 'create') {
-        // Crear: el servidor devuelve el registro con su id → se agrega arriba de la lista
-        const created = await createProfessor(payload);
-        setProfessors((prev) => [created, ...prev]);
+        await createProfessor(payload);
       } else if (editingProfessor) {
-        // Editar: se reemplaza el registro en la lista y en la ficha seleccionada
-        const updated = await updateProfessor(editingProfessor.id, payload);
-        setProfessors((prev) => prev.map((professor) => (professor.id === updated.id ? updated : professor)));
+        const updated = await updateProfessor(editingProfessor, payload);
         setSelectedProfessor((prev) => (prev && prev.id === updated.id ? updated : prev));
       }
       setFormVisible(false);
     } catch (saveError) {
       console.error('[ProfesorScreen] Failed to save professor:', saveError);
-      setFormError(
-        saveError instanceof ProfessorsApiError && saveError.status
-          ? `La API respondió con un error (${saveError.status}).`
-          : 'No pudimos guardar los cambios.',
-      );
+      setFormError(describeError(saveError));
     } finally {
       setSaving(false);
     }
-  }, [form, formMode, editingProfessor]);
+  }, [form, formMode, editingProfessor, createProfessor, updateProfessor]);
 
   // ─── [SECCIÓN] Eliminar profesor ───
 
-  // Pide confirmación con un Alert nativo y luego llama al DELETE
-  const confirmDelete = useCallback((professor: Professor) => {
-    setMenu(null);
-    Alert.alert(
-      '¿Eliminar profesor?',
-      `Se eliminará la ficha de ${professor.name} del directorio.`,
-      [
-        { text: 'Cancelar', style: 'cancel' },
-        {
-          text: 'Eliminar',
-          style: 'destructive',
-          onPress: () => {
-            void (async () => {
-              try {
-                await deleteProfessor(professor.id);
-                // Quita el registro de la lista y de la ficha abierta, si coincidía
-                setProfessors((prev) => prev.filter((item) => item.id !== professor.id));
-                setSelectedProfessor((prev) => (prev && prev.id === professor.id ? null : prev));
-              } catch (deleteError) {
-                console.error('[ProfesorScreen] Failed to delete professor:', deleteError);
-                Alert.alert('No pudimos eliminar al profesor.', describeError(deleteError));
-              }
-            })();
+  // Pide confirmación con un Alert nativo y luego elimina (local + cola de sync)
+  const confirmDelete = useCallback(
+    (professor: Professor) => {
+      setMenu(null);
+      Alert.alert(
+        '¿Eliminar profesor?',
+        `Se eliminará la ficha de ${professor.name} del directorio.`,
+        [
+          { text: 'Cancelar', style: 'cancel' },
+          {
+            text: 'Eliminar',
+            style: 'destructive',
+            onPress: () => {
+              void (async () => {
+                try {
+                  await deleteProfessor(professor);
+                  setSelectedProfessor((prev) => (prev && prev.id === professor.id ? null : prev));
+                } catch (deleteError) {
+                  console.error('[ProfesorScreen] Failed to delete professor:', deleteError);
+                  Alert.alert('No pudimos eliminar al profesor.', describeError(deleteError));
+                }
+              })();
+            },
           },
-        },
-      ],
-    );
-  }, []);
+        ],
+      );
+    },
+    [deleteProfessor],
+  );
 
   // ─── [SECCIÓN] Render ───
 
@@ -231,10 +221,16 @@ export default function ProfessorScreen() {
             professors={professors}
             loading={loading}
             error={error}
-            onSelect={setSelectedProfessor}
+            isOffline={isOffline}
+            pendingCount={pendingCount}
+            newCount={newCount}
+            syncing={syncing}
+            pollIntervalMs={pollIntervalMs}
+            onSelect={handleSelect}
             onOpenCreate={openCreate}
             onOpenMenu={(professor, anchor) => setMenu({ professor, anchor })}
-            onRetry={() => void loadProfessors()}
+            onChangePollInterval={(intervalMs) => void setPollInterval(intervalMs)}
+            onRetry={() => void syncNow()}
           />
         )}
       </ScrollView>

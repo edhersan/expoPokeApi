@@ -41,6 +41,31 @@ export const profesorStyles = StyleSheet.create({
   kebabButton: { alignItems: 'center', borderRadius: 16, height: 32, justifyContent: 'center', width: 32 },
   avatarImage: { backgroundColor: 'rgba(217, 237, 248, 0.9)', borderRadius: 28, height: 56, width: 56 },
 
+  // ── Aviso de sincronización offline (banner del directorio) ──
+  syncBanner: { alignItems: 'center', backgroundColor: 'rgba(255, 255, 255, 0.58)', borderColor: 'rgba(255, 255, 255, 0.9)', borderRadius: 14, borderWidth: 1.5, flexDirection: 'row', gap: 10, marginBottom: 12, paddingHorizontal: 14, paddingVertical: 11 },
+  syncBannerOffline: { borderColor: 'rgba(216, 106, 93, 0.5)' },
+  syncBannerText: { color: '#35627a', flex: 1, fontSize: 12, fontWeight: '800' },
+  syncAction: { backgroundColor: '#275972', borderRadius: 10, paddingHorizontal: 12, paddingVertical: 7 },
+  syncActionDisabled: { opacity: 0.6 },
+  syncActionLabel: { color: '#ffffff', fontSize: 10, fontWeight: '900', letterSpacing: 1 },
+  pendingBadge: { color: '#d86a5d', fontSize: 10, fontWeight: '900' },
+
+  // ── Indicador "NUEVO" (inserciones bajadas de la nube) ──
+  cardTitleRow: { alignItems: 'center', flexDirection: 'row', flexWrap: 'wrap', gap: 8 },
+  newBadge: { alignItems: 'center', backgroundColor: 'rgba(46, 158, 107, 0.14)', borderColor: 'rgba(46, 158, 107, 0.45)', borderRadius: 8, borderWidth: 1, flexDirection: 'row', gap: 4, paddingHorizontal: 7, paddingVertical: 3 },
+  newBadgeText: { color: '#1d7d52', fontSize: 9, fontWeight: '900', letterSpacing: 0.8 },
+  newTag: { alignItems: 'center', backgroundColor: 'rgba(46, 158, 107, 0.12)', borderColor: 'rgba(46, 158, 107, 0.4)', borderRadius: 10, borderWidth: 1, flexDirection: 'row', gap: 6, marginTop: 10, paddingHorizontal: 10, paddingVertical: 6 },
+  newTagText: { color: '#1d7d52', fontSize: 10, fontWeight: '900', letterSpacing: 1 },
+
+  // ── Selector del intervalo de monitoreo de la nube ──
+  pollRow: { alignItems: 'center', backgroundColor: 'rgba(255, 255, 255, 0.42)', borderColor: 'rgba(255, 255, 255, 0.9)', borderRadius: 14, borderWidth: 1.5, flexDirection: 'row', gap: 8, marginBottom: 12, paddingHorizontal: 14, paddingVertical: 9 },
+  pollLabelBox: { alignItems: 'center', flex: 1, flexDirection: 'row', gap: 6 },
+  pollLabel: { color: '#35627a', fontSize: 11, fontWeight: '900', letterSpacing: 1.2 },
+  pollOption: { backgroundColor: 'rgba(255, 255, 255, 0.58)', borderColor: 'rgba(39, 89, 114, 0.25)', borderRadius: 9, borderWidth: 1.5, paddingHorizontal: 10, paddingVertical: 5 },
+  pollOptionActive: { backgroundColor: '#275972', borderColor: '#275972' },
+  pollOptionLabel: { color: '#275972', fontSize: 11, fontWeight: '900' },
+  pollOptionLabelActive: { color: '#ffffff' },
+
   // ── Menú kebab (popover) ──
   backdrop: { backgroundColor: 'rgba(18, 50, 71, 0.28)', flex: 1 },
   popover: { backgroundColor: 'rgba(255, 255, 255, 0.97)', borderColor: 'rgba(255, 255, 255, 0.9)', borderRadius: 14, borderWidth: 1.5, minWidth: 170, paddingVertical: 6, position: 'absolute', shadowColor: '#123247', shadowOffset: { height: 8, width: 0 }, shadowOpacity: 0.18, shadowRadius: 14, elevation: 8 },
@@ -65,6 +90,8 @@ export const profesorStyles = StyleSheet.create({
   detailAvatarImage: { backgroundColor: 'rgba(217, 237, 248, 0.9)', borderRadius: 40, height: 80, marginBottom: 14, width: 80 },
   detailName: { color: '#123247', fontSize: 30, fontWeight: '900', marginTop: 7 },
   detailSpecialty: { color: '#35627a', fontSize: 15, fontWeight: '800', marginTop: 5 },
+  pendingTag: { alignItems: 'center', backgroundColor: 'rgba(216, 106, 93, 0.12)', borderColor: 'rgba(216, 106, 93, 0.4)', borderRadius: 10, borderWidth: 1, flexDirection: 'row', gap: 6, marginTop: 10, paddingHorizontal: 10, paddingVertical: 6 },
+  pendingTagText: { color: '#c0392b', fontSize: 10, fontWeight: '900', letterSpacing: 1 },
   metaRow: { flexDirection: 'row', gap: 10, marginBottom: 20 },
   metaCard: { backgroundColor: 'rgba(255, 255, 255, 0.58)', borderColor: 'rgba(255, 255, 255, 0.9)', borderRadius: 14, borderWidth: 1.5, flex: 1, minHeight: 122, padding: 13 },
   metaLabel: { color: '#4e7184', fontSize: 9, fontWeight: '900', letterSpacing: 1, marginTop: 8 },

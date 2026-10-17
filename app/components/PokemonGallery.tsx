@@ -8,7 +8,7 @@
 
 import { Platform, ActivityIndicator, Image, StyleSheet, Text, View } from 'react-native';
 import React from 'react';
-import { Pokemon } from '../types';
+import { Pokemon } from '@/types';
 
 interface PokemonGalleryProps {
   pokemon: Pokemon | null;

@@ -11,7 +11,8 @@ import { PROFESORES_API_URL } from '@/constants/profesores';
 import { Professor } from '@/types';
 
 // Respuesta cruda de la API de profesores (campos en español, sin `name` ni `subjects`)
-interface ProfessorApiResponse {
+// Se exporta para que la caché offline guarde los campos tal cual llegan (sin valores por defecto)
+export interface RawProfessor {
   id: number;
   nombre: string;
   apellido: string;
@@ -20,6 +21,8 @@ interface ProfessorApiResponse {
   experiencia_laboral: string;
   url_imagen: string;
 }
+
+type ProfessorApiResponse = RawProfessor;
 
 // Payload que se envía al crear/actualizar un profesor (POST / PUT)
 // Debe coincidir con los campos del formulario en app/(tabs)/profesor.tsx
@@ -96,6 +99,18 @@ export async function fetchProfessors(): Promise<Professor[]> {
   }
 
   return professors.map(mapProfessor);
+}
+
+// GET /api/profesores → lista completa SIN mapear (campos crudos del backend)
+// La usa el motor de sincronización para refrescar la caché local con datos fieles
+export async function fetchRawProfessors(): Promise<RawProfessor[]> {
+  const professors = await requestJson<RawProfessor[]>('/api/profesores');
+
+  if (!Array.isArray(professors)) {
+    throw new ProfessorsApiError('INVALID_PROFESSORS_RESPONSE');
+  }
+
+  return professors;
 }
 
 // POST /api/profesores → crea un profesor nuevo y lo devuelve con su id

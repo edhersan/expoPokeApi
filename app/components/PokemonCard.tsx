@@ -9,7 +9,7 @@
 import { Ionicons } from '@expo/vector-icons';
 import { Platform, ActivityIndicator, Image, Pressable, StyleSheet, Text, View } from 'react-native';
 import React from 'react';
-import { Pokemon } from '../types';
+import { Pokemon } from '@/types';
 
 interface PokemonCardProps {
   pokemon: Pokemon | null;
