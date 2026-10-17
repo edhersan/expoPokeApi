@@ -76,6 +76,7 @@ En Windows PowerShell, usa `npx.cmd` en lugar de `npx` si el sistema lo requiere
 ```text
 app/
 ├── _layout.tsx                 # Layout raíz de Expo Router (monta los providers)
+├── index.tsx                   # Ruta "/" → redirige a la Pokédex (primera pestaña)
 ├── (tabs)/                     # Pantallas y navegación inferior
 │   ├── _layout.tsx
 │   ├── pokedex.tsx
