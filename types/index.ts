@@ -75,6 +75,21 @@ export interface Professor {
   isNew?: boolean;
 }
 
+// Mensaje del chat (pestaña "Chat"): burbuja del usuario o del asistente.
+// `error` marca las respuestas que fallaron (la UI ofrece reintentar)
+export interface ChatMessage {
+  id: string;
+  role: 'user' | 'assistant';
+  text: string;
+  error?: boolean;
+}
+
+// Respuesta de la API del chat (POST /chat): la mapea services/chatApi.ts
+export interface ChatReply {
+  reply: string;
+  interactionId?: string;
+}
+
 // Operación de la cola de sincronización offline (services/professorsRepo.ts)
 export type SyncOperation = 'create' | 'update' | 'delete';
 

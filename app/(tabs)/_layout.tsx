@@ -1,6 +1,6 @@
 // ──────────────────────────────────────────────────────────────
 // ARCHIVO:  app/(tabs)/_layout.tsx
-// FUNCIÓN:  Barra de pestañas inferior (define las 5 secciones de la app)
+// FUNCIÓN:  Barra de pestañas inferior (define las 6 secciones de la app)
 // DEPENDE:  react-native-safe-area-context (insets para el home indicator)
 // USADO POR: app/_layout.tsx monta esta ruta como "(tabs)"
 // CAMBIOS:  AGREGAR/QUITAR PESTAÑA → bloque <Tabs.Screen> | colores activo/inactivo →
@@ -75,6 +75,16 @@ export default function TabLayout() {
           title: 'Profesor',
           tabBarIcon: ({ focused }) => (
             <Ionicons name={focused ? 'school' : 'school-outline'} size={22} color={focused ? '#275972' : '#6b8999'} />
+          ),
+        }}
+      />
+      {/* ─── [PESTAÑA 6] Chat → conversación con el asistente de la API ─── */}
+      <Tabs.Screen
+        name="chat"
+        options={{
+          title: 'Chat',
+          tabBarIcon: ({ focused }) => (
+            <Ionicons name={focused ? 'chatbubbles' : 'chatbubbles-outline'} size={22} color={focused ? '#275972' : '#6b8999'} />
           ),
         }}
       />

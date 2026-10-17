@@ -6,6 +6,8 @@ Aplicación multiplataforma desarrollada con React Native, Expo y TypeScript. Pe
 - Consultar estadísticas, movimientos, imágenes y descripción.
 - Explorar juegos usando las APIs desplegadas de Pokémon y videojuegos.
 - Gestionar el directorio de profesores con alta, edición y baja.
+- Conversar con el asistente de la app (Pokémon, videojuegos y profesores) desde la
+  pestaña **Chat**, conectada a la API de chat desplegada en Vercel.
 - Funcionar **offline** en toda la app: profesores (SQLite + cola de cambios),
   Pokémon (catálogo cacheado en SQLite) y juegos (catálogo JSON empaquetado y local),
   sincronizándose automáticamente al recuperar la conexión.
@@ -26,6 +28,7 @@ Aplicación multiplataforma desarrollada con React Native, Expo y TypeScript. Pe
 - API de Pokémon desplegada en Vercel
 - API de videojuegos desplegada en Vercel
 - API de profesores desplegada en Vercel
+- API de chat desplegada en Vercel
 
 ## Requisitos
 
@@ -40,6 +43,7 @@ La aplicación no requiere API keys. Las APIs utilizadas son:
 - Pokémon: <https://pokemon-api-edhersan.vercel.app/>
 - Videojuegos: <https://games-api-iota.vercel.app/>
 - Profesores: <https://docentes-api.vercel.app/>
+- Chat: <https://api-chat-blush.vercel.app/> (asistente con `POST /chat`)
 
 ## Instalación
 
@@ -83,14 +87,17 @@ app/
 │   ├── pokemon-info.tsx
 │   ├── games.tsx
 │   ├── game-info.tsx
-│   └── profesor.tsx
+│   ├── profesor.tsx
+│   └── chat.tsx
 └── components/                 # Componentes reutilizables
+    └── chat/                   # Burbujas, barra de escritura y sugerencias del chat
 constants/                      # URLs y valores iniciales
 context/                        # Estado global (búsquedas offline-first + ProfessorsContext)
 services/                       # Clientes de las APIs + capa de datos local
 │   ├── pokemonApi.ts
 │   ├── juegosApi.ts
 │   ├── profesoresApi.ts
+│   ├── chatApi.ts              # Cliente de la API del chat (POST /chat)
 │   ├── db.ts                   # Apertura de SQLite y migraciones (profesores + pokémon)
 │   ├── professorsRepo.ts       # Repositorio local (offline-first) del directorio
 │   ├── pokemonRepo.ts          # Caché local del catálogo de Pokémon
