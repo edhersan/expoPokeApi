@@ -1,5 +1,5 @@
 // ──────────────────────────────────────────────────────────────
-// ARCHIVO:  app/components/PokemonDetails.tsx
+// ARCHIVO:  components/PokemonDetails.tsx
 // FUNCIÓN:  Ficha técnica completa del Pokémon (altura, peso, descripción y ataques)
 // USADO POR: app/(tabs)/pokemon-info.tsx
 // CAMBIOS:  nº de ataques mostrados → .slice(0, 4) | campos de la ficha → JSX del return |

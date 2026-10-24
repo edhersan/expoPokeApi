@@ -1,5 +1,5 @@
 // ──────────────────────────────────────────────────────────────
-// ARCHIVO:  app/components/GameGallery.tsx
+// ARCHIVO:  components/GameGallery.tsx
 // FUNCIÓN:  Galería de imágenes del videojuego buscado (portada + capturas)
 // USADO POR: app/(tabs)/games.tsx
 // CAMBIOS:  nº de imágenes → lo controla services/juegosApi.ts (.slice(0, 3)) |

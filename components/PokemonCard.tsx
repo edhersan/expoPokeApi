@@ -1,5 +1,5 @@
 // ──────────────────────────────────────────────────────────────
-// ARCHIVO:  app/components/PokemonCard.tsx
+// ARCHIVO:  components/PokemonCard.tsx
 // FUNCIÓN:  Tarjeta de presentación de un Pokémon (imagen, stats y botón de favorito)
 // USADO POR: no está en uso actualmente (componente reservado; la Pokédex usa PokemonGallery)
 // CAMBIOS:  nº de movimientos → .slice(0, 2) | botón de favorito → onToggleFavorite (prop) |

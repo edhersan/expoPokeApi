@@ -1,5 +1,5 @@
 // ──────────────────────────────────────────────────────────────
-// ARCHIVO:  app/components/chat/ChatSuggestions.tsx
+// ARCHIVO:  components/chat/ChatSuggestions.tsx
 // FUNCIÓN:  Chips de preguntas sugeridas que inician la conversación con un toque
 // USADO POR: app/(tabs)/chat.tsx (solo antes del primer mensaje del usuario)
 // CAMBIOS:  preguntas → constants/chat.ts (CHAT_SUGGESTIONS) | colores → styles

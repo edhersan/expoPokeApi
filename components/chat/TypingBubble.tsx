@@ -1,5 +1,5 @@
 // ──────────────────────────────────────────────────────────────
-// ARCHIVO:  app/components/chat/TypingBubble.tsx
+// ARCHIVO:  components/chat/TypingBubble.tsx
 // FUNCIÓN:  Burbuja del asistente en estado "escribiendo…" mientras llega la respuesta
 // USADO POR: app/(tabs)/chat.tsx (se muestra mientras se espera a la API)
 // CAMBIOS:  colores/spinner → styles

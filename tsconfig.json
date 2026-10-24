@@ -15,14 +15,14 @@
     "forceConsistentCasingInFileNames": true,
     "paths": {
       "@/*": ["./*"],
-      "@/components/*": ["./app/components/*"],
+      "@/components/*": ["./components/*"],
       "@/services/*": ["./services/*"],
       "@/constants/*": ["./constants/*"],
       "@/types": ["./types/index.ts"],
       "@/types/*": ["./types/*"]
     }
   },
-  "include": ["app/**/*", "constants/**/*", "services/**/*", "types/**/*", "*.config.*"],
+  "include": ["app/**/*", "components/**/*", "constants/**/*", "services/**/*", "types/**/*", "context/**/*", "*.config.*"],
   "exclude": ["node_modules"],
   "extends": "expo/tsconfig.base"
 }

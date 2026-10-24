@@ -1,5 +1,5 @@
 // ──────────────────────────────────────────────────────────────
-// ARCHIVO:  app/components/profesor/ProfessorDetail.tsx
+// ARCHIVO:  components/profesor/ProfessorDetail.tsx
 // FUNCIÓN:  Ficha completa de un profesor (vista de detalle al tocar una tarjeta)
 //           Muestra avatar, nombre, títulos, experiencia, biografía y áreas de estudio
 // USADO POR: profesor.tsx (cuando selectedProfessor no es null)

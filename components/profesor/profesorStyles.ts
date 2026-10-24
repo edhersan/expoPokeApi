@@ -1,7 +1,7 @@
 // ──────────────────────────────────────────────────────────────
-// ARCHIVO:  app/components/profesor/profesorStyles.ts
+// ARCHIVO:  components/profesor/profesorStyles.ts
 // FUNCIÓN:  StyleSheet compartido de todo el módulo de profesores
-// USADO POR: profesor.tsx y todas las piezas de app/components/profesor/
+// USADO POR: profesor.tsx y todas las piezas de components/profesor/
 // CAMBIOS:  paleta aero → bloques screen/header | tarjetas del directorio →
 //           sección "Directorio" | menú kebab → sección "Popover" |
 //           modal de alta/edición → sección "Formulario"

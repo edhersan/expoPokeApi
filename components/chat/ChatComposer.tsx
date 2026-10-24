@@ -1,5 +1,5 @@
 // ──────────────────────────────────────────────────────────────
-// ARCHIVO:  app/components/chat/ChatComposer.tsx
+// ARCHIVO:  components/chat/ChatComposer.tsx
 // FUNCIÓN:  Barra de escritura del chat (input multilínea + botón de enviar)
 // USADO POR: app/(tabs)/chat.tsx
 // CAMBIOS:  placeholder → CHAT_PLACEHOLDER | colores → styles |

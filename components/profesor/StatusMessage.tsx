@@ -1,5 +1,5 @@
 // ──────────────────────────────────────────────────────────────
-// ARCHIVO:  app/components/profesor/StatusMessage.tsx
+// ARCHIVO:  components/profesor/StatusMessage.tsx
 // FUNCIÓN:  Mensaje de texto centrado para estados de carga y vacío
 // USADO POR: ProfessorDirectory ("Cargando profesores...", "No hay profesores disponibles.")
 // CAMBIOS:  estilo del texto → styles.status / styles.statusText en profesorStyles.ts

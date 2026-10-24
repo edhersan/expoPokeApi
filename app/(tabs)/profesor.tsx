@@ -6,15 +6,15 @@
 // USADO POR: pestaña 5 de la app (ver app/(tabs)/_layout.tsx)
 // CAMBIOS:  lógica de CRUD → useProfessors() | composición de la vista → JSX del return |
 //           badge "NUEVO" se limpia al abrir la ficha → handleSelect + markProfessorSeen |
-//           campos del formulario → app/components/profesor/ProfessorForm.tsx + profesorTypes.ts
+//           campos del formulario → components/profesor/ProfessorForm.tsx + profesorTypes.ts
 // ESTRUCTURA DEL MÓDULO:
-//           app/components/profesor/profesorTypes.ts       (tipos y helpers)
-//           app/components/profesor/profesorStyles.ts      (estilos compartidos)
-//           app/components/profesor/ProfessorDirectory.tsx (lista + tarjeta agregar)
-//           app/components/profesor/ProfessorDetail.tsx    (ficha de detalle)
-//           app/components/profesor/ProfessorForm.tsx      (modal crear/editar)
-//           app/components/profesor/ProfessorMenu.tsx      (popover Editar/Borrar)
-//           app/components/profesor/StatusMessage.tsx      (mensaje centrado)
+//           components/profesor/profesorTypes.ts       (tipos y helpers)
+//           components/profesor/profesorStyles.ts      (estilos compartidos)
+//           components/profesor/ProfessorDirectory.tsx (lista + tarjeta agregar)
+//           components/profesor/ProfessorDetail.tsx    (ficha de detalle)
+//           components/profesor/ProfessorForm.tsx      (modal crear/editar)
+//           components/profesor/ProfessorMenu.tsx      (popover Editar/Borrar)
+//           components/profesor/StatusMessage.tsx      (mensaje centrado)
 // ──────────────────────────────────────────────────────────────
 
 import { Ionicons } from '@expo/vector-icons';

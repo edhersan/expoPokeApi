@@ -1,5 +1,5 @@
 // ──────────────────────────────────────────────────────────────
-// ARCHIVO:  app/components/SearchBar.tsx
+// ARCHIVO:  components/SearchBar.tsx
 // FUNCIÓN:  Barra de búsqueda reutilizable (input + botón de lupa/flecha)
 // USADO POR: las 4 pantallas con buscador (pokedex, pokemon-info, games, game-info)
 // CAMBIOS:  placeholder por defecto → se pasa desde cada pantalla (prop `placeholder`) |

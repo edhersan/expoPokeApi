@@ -1,5 +1,5 @@
 // ──────────────────────────────────────────────────────────────
-// ARCHIVO:  app/components/chat/ChatBubble.tsx
+// ARCHIVO:  components/chat/ChatBubble.tsx
 // FUNCIÓN:  Burbuja de mensaje del chat (usuario a la derecha, asistente a la izquierda)
 // USADO POR: app/(tabs)/chat.tsx
 // CAMBIOS:  colores → styles | sombras → getBubbleShadows() | acción de reintento → onRetry

@@ -1,5 +1,5 @@
 // ──────────────────────────────────────────────────────────────
-// ARCHIVO:  app/components/profesor/ProfessorMenu.tsx
+// ARCHIVO:  components/profesor/ProfessorMenu.tsx
 // FUNCIÓN:  Menú contextual (popover) del botón "⋮": acciones Editar y Borrar
 // USADO POR: profesor.tsx (se ancla a la posición del botón kebab que lo abrió)
 // CAMBIOS:  acciones del menú → bloques <Pressable> del popover |

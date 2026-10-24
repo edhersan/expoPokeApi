@@ -1,5 +1,5 @@
 // ──────────────────────────────────────────────────────────────
-// ARCHIVO:  app/components/profesor/ProfessorForm.tsx
+// ARCHIVO:  components/profesor/ProfessorForm.tsx
 // FUNCIÓN:  Modal de formulario para crear o editar un profesor (6 campos + acciones)
 // USADO POR: profesor.tsx (lo abre openCreate / openEdit, lo envía submitForm)
 // CAMBIOS:  campos del formulario → bloques <FormField> + FormValues en profesorTypes.ts |

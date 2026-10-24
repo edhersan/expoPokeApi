@@ -1,5 +1,5 @@
 // ──────────────────────────────────────────────────────────────
-// ARCHIVO:  app/components/profesor/profesorTypes.ts
+// ARCHIVO:  components/profesor/profesorTypes.ts
 // FUNCIÓN:  Tipos, constantes y helpers compartidos del módulo de profesores
 // USADO POR: profesor.tsx (orquestador), ProfessorForm, ProfessorMenu, ProfessorDirectory
 // CAMBIOS:  campos del formulario → FormValues + EMPTY_FORM |

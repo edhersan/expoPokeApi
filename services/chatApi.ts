@@ -1,7 +1,7 @@
 // ──────────────────────────────────────────────────────────────
 // ARCHIVO:  services/chatApi.ts
 // FUNCIÓN:  Conexión con la API del chat (asistente de Pokedex Expo)
-// DEPENDE:  constants/chat.ts (CHAT_API_URL, CHAT_TIMEOUT_MS), types/index.ts (ChatReply)
+// DEPENDE:  constants/chat.ts (CHAT_API_URL, DEFAULT_CHAT_TIMEOUT_MS), types/index.ts (ChatReply, AIProvider)
 // USADO POR: app/(tabs)/chat.tsx → envía cada mensaje del usuario
 // CAMBIOS:  URL/timeout → constants/chat.ts | mensajes de error →
 //           getChatErrorMessage | código de error nuevo → lanzarlo en sendChatMessage
@@ -9,30 +9,40 @@
 //           asistente únicamente responde temas de Pokémon, videojuegos y profesores.
 // ──────────────────────────────────────────────────────────────
 
-import { CHAT_API_URL, CHAT_TIMEOUT_MS } from '@/constants/chat';
-import { ChatReply } from '@/types';
+import { CHAT_API_URL, DEFAULT_CHAT_TIMEOUT_MS } from '@/constants/chat';
+import { ChatReply, AIProvider } from '@/types';
 
 // Envía un mensaje al asistente (POST /chat) y devuelve su respuesta en texto plano.
 // Lanza: 'EMPTY_MESSAGE' si el texto está vacío | 'CHAT_UNAVAILABLE' si hay fallo
 // de red, timeout o error del servidor | 'CHAT_BAD_RESPONSE' si la respuesta no trae `reply`
-export async function sendChatMessage(message: string): Promise<string> {
+export async function sendChatMessage(
+  message: string,
+  options?: { timeoutMs?: number; provider?: AIProvider }
+): Promise<string> {
   const clean = message.trim();
   if (!clean) {
     throw new Error('EMPTY_MESSAGE');
   }
 
+  // Espera de 5 segundos para dar tiempo a que las demás APIs traigan sus datos
+  await new Promise<void>((resolve) => {
+    setTimeout(resolve, 5000);
+  });
+
   const url = `${CHAT_API_URL}/chat`;
-  console.log('[ChatAPI] Sending message');
+  const timeoutMs = options?.timeoutMs ?? DEFAULT_CHAT_TIMEOUT_MS;
+  const provider = options?.provider ?? 'gemini';
+  console.log('[ChatAPI] Sending message', { timeoutMs, provider });
 
   // Timeout propio: si el modelo tarda demasiado se aborta la petición
   const controller = new AbortController();
-  const timer = setTimeout(() => controller.abort(), CHAT_TIMEOUT_MS);
+  const timer = setTimeout(() => controller.abort(), timeoutMs);
 
   try {
     const response = await fetch(url, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ message: clean }),
+      body: JSON.stringify({ message: clean, provider }),
       signal: controller.signal,
     });
 

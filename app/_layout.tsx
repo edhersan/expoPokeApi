@@ -24,7 +24,7 @@ export default function RootLayout() {
           {/* SafeAreaProvider: respeta el notch/barra de estado del dispositivo */}
           <SafeAreaProvider>
             {/* Barra de estado del sistema (reloj, batería) en tono oscuro */}
-            <StatusBar barStyle="dark-content" backgroundColor="#d9edf8" />
+            <StatusBar barStyle="dark-content" />
             {/* Stack de navegación: header oculto (cada pantalla trae el suyo propio) */}
             <Stack
               screenOptions={{

@@ -9,8 +9,8 @@
 // URL base de la API del chat (backend propio desplegado en Vercel)
 export const CHAT_API_URL = 'https://api-chat-blush.vercel.app';
 
-// Timeout de la petición al chat en milisegundos (el modelo puede tardar en responder)
-export const CHAT_TIMEOUT_MS = 45000;
+// Timeout de la petición al chat en milisegundos (valor por defecto)
+export const DEFAULT_CHAT_TIMEOUT_MS = 45000;
 
 // Mensaje de bienvenida local: se muestra al abrir la pestaña, antes de la primera pregunta
 export const CHAT_WELCOME =

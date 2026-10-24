@@ -1,5 +1,5 @@
 // ──────────────────────────────────────────────────────────────
-// ARCHIVO:  app/components/profesor/ProfessorDirectory.tsx
+// ARCHIVO:  components/profesor/ProfessorDirectory.tsx
 // FUNCIÓN:  Directorio de profesores: selector de monitoreo, aviso de sincronización,
 //           contador, tarjeta "Agregar", lista de tarjetas (con badge "NUEVO") y
 //           estados de carga / error / vacío
@@ -249,7 +249,7 @@ function PollIntervalSelector({
 
 // Botón "⋮" (kebab): mide su posición en pantalla y la pasa al padre para anclar el menú
 function KebabButton({ onOpen }: { onOpen: (anchor: MenuAnchor) => void }) {
-  const buttonRef = useRef<View>(null);
+  const buttonRef = useRef<React.ComponentRef<typeof Pressable>>(null);
 
   return (
     <Pressable

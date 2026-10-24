@@ -1,5 +1,5 @@
 // ──────────────────────────────────────────────────────────────
-// ARCHIVO:  app/components/PokemonGallery.tsx
+// ARCHIVO:  components/PokemonGallery.tsx
 // FUNCIÓN:  Galería de imágenes del Pokémon buscado (portada + sprites)
 // USADO POR: app/(tabs)/pokedex.tsx
 // CAMBIOS:  nº de fotos mostradas → .slice(0, 3) | orden de imágenes → array `images` |

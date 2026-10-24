@@ -1,5 +1,5 @@
 // ──────────────────────────────────────────────────────────────
-// ARCHIVO:  app/components/GameDetails.tsx
+// ARCHIVO:  components/GameDetails.tsx
 // FUNCIÓN:  Ficha técnica del videojuego (lanzamiento, desarrollador, descripción)
 // USADO POR: app/(tabs)/game-info.tsx
 // CAMBIOS:  campos de la ficha → JSX del return | textos → strings en mayúsculas |

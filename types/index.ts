@@ -1,7 +1,7 @@
 // ──────────────────────────────────────────────────────────────
 // ARCHIVO:  types/index.ts
 // FUNCIÓN:  Tipos compartidos de toda la app (contratos de datos)
-// USADO POR: services/*, context/*, app/components/* y pantallas
+// USADO POR: services/*, context/*, components/* y pantallas
 // CAMBIOS:  agregar un campo a una entidad → editar la interfaz correspondiente aquí
 // ──────────────────────────────────────────────────────────────
 
@@ -92,6 +92,22 @@ export interface ChatReply {
 
 // Operación de la cola de sincronización offline (services/professorsRepo.ts)
 export type SyncOperation = 'create' | 'update' | 'delete';
+
+// Proveedores de IA disponibles para el chat
+export type AIProvider = 'gemini' | 'openai' | 'deepseek';
+
+export const AI_PROVIDERS: { value: AIProvider; label: string }[] = [
+  { value: 'gemini', label: 'Gemini' },
+  { value: 'openai', label: 'OpenAI' },
+  { value: 'deepseek', label: 'DeepSeek' },
+];
+
+export const TIMEOUT_OPTIONS: { value: number; label: string }[] = [
+  { value: 5000, label: '5 segundos' },
+  { value: 10000, label: '10 segundos' },
+  { value: 20000, label: '20 segundos' },
+  { value: 40000, label: '40 segundos' },
+];
 
 // Errores de búsqueda que lanzan los servicios de Pokémon y juegos;
 // los traduce a mensajes en español context/PokemonSearchContext.tsx y GameSearchContext.tsx
